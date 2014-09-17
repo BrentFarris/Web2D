@@ -8,7 +8,7 @@ var $Event = function() {
 		this.events.remove(event);
 	}
 	
-	this.Fire = function(args) {
+	this.Fire = function (args) {
 		for (var i = 0; i < this.events.length; i++)
 			this.events[i][0].apply(this.events[i][1], args);
 	}

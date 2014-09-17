@@ -244,7 +244,7 @@ document.documentElement.onmousemove = function(e)
 	input.mousePosition.x = e.clientX - input.offset.x;
 	input.mousePosition.y = e.clientY - input.offset.y;
 	
-	input.mouseMove.Fire(input.mousePosition.x, input.mousePosition.y);
+	input.mouseMove.Fire([input.mousePosition.x, input.mousePosition.y]);
 };
 
 document.documentElement.onmousedown = function(e)
@@ -268,7 +268,7 @@ document.documentElement.onkeydown = function(e)
 		keycode = e.which;
 	
 	input.SetKeyDown(keycode);
-	input.mouseUp.Fire(keycode);
+	input.keyDown.Fire(keycode);
 };
 
 document.documentElement.onkeyup = function(e)
@@ -280,5 +280,5 @@ document.documentElement.onkeyup = function(e)
 		keycode = e.which;
 	
 	input.SetKeyUp(keycode);
-	input.mouseUp.Fire(keycode);
+	input.keyUp.Fire(keycode);
 };
