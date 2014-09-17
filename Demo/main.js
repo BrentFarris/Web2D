@@ -1,4 +1,4 @@
-registerCanvas(document.getElementById("canvas"));
+registerCanvas(document.getElementById("canvas"), 1.0, 1.0);
 
 var rect = new $Rectangle(25, 25, 25, 25, new $Color(0, 0, 0, 1));
 
