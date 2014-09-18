@@ -10,3 +10,4 @@ function MoveToMouse(x, y) {
 }
 
 input.mouseMove.Register(MoveToMouse);
+console.log(rect);

@@ -1,0 +1,1539 @@
+{
+    "project": {},
+    "files": {
+        "arrayExtensions.js": {
+            "name": "arrayExtensions.js",
+            "modules": {},
+            "classes": {
+                "Array": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "canvas.js": {
+            "name": "canvas.js",
+            "modules": {},
+            "classes": {
+                "$Canvas": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "document.js": {
+            "name": "document.js",
+            "modules": {},
+            "classes": {
+                "$Document": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "event.js": {
+            "name": "event.js",
+            "modules": {},
+            "classes": {
+                "$Event": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "framework.js": {
+            "name": "framework.js",
+            "modules": {},
+            "classes": {
+                "$Vector2": 1,
+                "$Color": 1,
+                "$Rectangle": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "input.js": {
+            "name": "input.js",
+            "modules": {},
+            "classes": {
+                "$Keys": 1,
+                "$Input": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "spriteSheet.js": {
+            "name": "spriteSheet.js",
+            "modules": {},
+            "classes": {
+                "$SpriteSheet": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "web2d.js": {
+            "name": "web2d.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "window.js": {
+            "name": "window.js",
+            "modules": {},
+            "classes": {
+                "$Window": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Array": {
+            "name": "Array",
+            "shortname": "Array",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "arrayExtensions.js",
+            "line": 1,
+            "description": "Extension methods to the base array class"
+        },
+        "$Canvas": {
+            "name": "$Canvas",
+            "shortname": "$Canvas",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "canvas.js",
+            "line": 1,
+            "description": "An object to manage a HTML5 <canvas> element",
+            "params": [
+                {
+                    "name": "elm",
+                    "description": "The canvas element on the page to reference",
+                    "type": "Object"
+                },
+                {
+                    "name": "widthPercent",
+                    "description": "The width scale factor of the canvas (if null uses default width set in the canvas tag)",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "null"
+                },
+                {
+                    "name": "heightPercent",
+                    "description": "The height scale factor of the canvas (if null uses default height set in the canvas tag)",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "null"
+                }
+            ]
+        },
+        "$Document": {
+            "name": "$Document",
+            "shortname": "$Document",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "document.js",
+            "line": 1,
+            "description": "An extension to the main document object"
+        },
+        "$Event": {
+            "name": "$Event",
+            "shortname": "$Event",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "event.js",
+            "line": 1,
+            "description": "The event class is responsible for registering multiple events to one function call much like C#'s \"event\" type",
+            "is_constructor": 1
+        },
+        "$Vector2": {
+            "name": "$Vector2",
+            "shortname": "$Vector2",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "framework.js",
+            "line": 1,
+            "description": "A basic 2 dimensional vector",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x dimension of the vector",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "0"
+                },
+                {
+                    "name": "y",
+                    "description": "The y dimension of the vector",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ]
+        },
+        "$Color": {
+            "name": "$Color",
+            "shortname": "$Color",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "framework.js",
+            "line": 120,
+            "description": "A basic class to handle color (rgba) and its conversions for canvas",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "A red value between 0 and 255 (inclusive)",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "255"
+                },
+                {
+                    "name": "g",
+                    "description": "A green value between 0 and 255 (inclusive)",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "255"
+                },
+                {
+                    "name": "b",
+                    "description": "A blue value between 0 and 255 (inclusive)",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "255"
+                },
+                {
+                    "name": "a",
+                    "description": "An alpha between 0.0 and 1.0 (inclusive)",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "1.0"
+                }
+            ]
+        },
+        "$Rectangle": {
+            "name": "$Rectangle",
+            "shortname": "$Rectangle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "framework.js",
+            "line": 168,
+            "description": "A simple rectangle that can be used for placement, collision detection or even for debugging",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x position for the rectangle",
+                    "type": "Int"
+                },
+                {
+                    "name": "y",
+                    "description": "The y position for the rectangle",
+                    "type": "Int"
+                },
+                {
+                    "name": "w",
+                    "description": "The width for the rectangle",
+                    "type": "Int"
+                },
+                {
+                    "name": "h",
+                    "description": "The height for the rectangle",
+                    "type": "Int"
+                },
+                {
+                    "name": "color",
+                    "description": "The color for the debug draw of the rectangle",
+                    "type": "$Color"
+                }
+            ]
+        },
+        "$Keys": {
+            "name": "$Keys",
+            "shortname": "$Keys",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "input.js",
+            "line": 4,
+            "description": "A helper class to compare keycode information and names (should act as a singleton). When this file is included it will automatically make a global instance of this class named \"keys\""
+        },
+        "$Input": {
+            "name": "$Input",
+            "shortname": "$Input",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "input.js",
+            "line": 54,
+            "description": "The main input class for everything (should act as a singleton). When this file is included it will automatically make a global instance of this class named \"input\""
+        },
+        "$SpriteSheet": {
+            "name": "$SpriteSheet",
+            "shortname": "$SpriteSheet",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "spriteSheet.js",
+            "line": 1,
+            "description": "A helper class that allows to easily animate regular (same sized) sprite sheets",
+            "params": [
+                {
+                    "name": "width",
+                    "description": "The width of each sprite in the sprite sheet",
+                    "type": "Int"
+                },
+                {
+                    "name": "height",
+                    "description": "The height of each sprite in the sprite sheet",
+                    "type": "Int"
+                },
+                {
+                    "name": "row",
+                    "description": "The column to start on for ths animation",
+                    "type": "Int"
+                },
+                {
+                    "name": "column",
+                    "description": "The column to start on for this animation",
+                    "type": "Int"
+                },
+                {
+                    "name": "limit",
+                    "description": "The limited set of sprites to cycle through",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "Infinite"
+                },
+                {
+                    "name": "imgSrc",
+                    "description": "The image to be used for the spirte animation",
+                    "type": "String|Image"
+                },
+                {
+                    "name": "fps",
+                    "description": "The frames per second for this animation",
+                    "type": "Int"
+                },
+                {
+                    "name": "columns",
+                    "description": "How many total columns this animtation has",
+                    "type": "Int"
+                },
+                {
+                    "name": "rows",
+                    "description": "How many total rows this animation has",
+                    "type": "Int"
+                }
+            ]
+        },
+        "$Window": {
+            "name": "$Window",
+            "shortname": "$Window",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "window.js",
+            "line": 1,
+            "description": "An extension to the main window object"
+        }
+    },
+    "classitems": [
+        {
+            "file": "arrayExtensions.js",
+            "line": 6,
+            "description": "Removes a given element from an array given its index",
+            "itemtype": "method",
+            "name": "removeAt",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "The index of the element to be removed from the array",
+                    "type": "Int"
+                }
+            ],
+            "chainable": 1,
+            "class": "Array"
+        },
+        {
+            "file": "arrayExtensions.js",
+            "line": 17,
+            "description": "Removes an item from the array if the item's signatures match; Only removes the first found instance",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "arg",
+                    "description": "The object to be compared against and removed",
+                    "type": "Object"
+                }
+            ],
+            "chainable": 1,
+            "class": "Array"
+        },
+        {
+            "file": "arrayExtensions.js",
+            "line": 34,
+            "description": "Delete all the items from the array",
+            "itemtype": "method",
+            "name": "clear",
+            "class": "Array"
+        },
+        {
+            "file": "arrayExtensions.js",
+            "line": 42,
+            "description": "Insert an Object into the array at a given position; this shifts the one at that current position to the next index",
+            "itemtype": "method",
+            "name": "insertAt",
+            "params": [
+                {
+                    "name": "arg",
+                    "description": "The object to be inserted into the array at the supplied index",
+                    "type": "Object"
+                },
+                {
+                    "name": "position",
+                    "description": "The position to insert the supplied object at in the array",
+                    "type": "Int"
+                }
+            ],
+            "chainable": 1,
+            "class": "Array"
+        },
+        {
+            "file": "arrayExtensions.js",
+            "line": 66,
+            "description": "Determines if the supplied object is already in the array",
+            "itemtype": "method",
+            "name": "contains",
+            "params": [
+                {
+                    "name": "arg",
+                    "description": "The object to compare against",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Literal Returns true if the object was found in the array"
+            },
+            "class": "Array"
+        },
+        {
+            "file": "arrayExtensions.js",
+            "line": 80,
+            "description": "THis counts how many times the object occurs in the array",
+            "itemtype": "method",
+            "name": "occurs",
+            "params": [
+                {
+                    "name": "arg",
+                    "description": "The object to be compared against",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "counter The amount of times the supplied object was found in the array"
+            },
+            "class": "Array"
+        },
+        {
+            "file": "canvas.js",
+            "line": 13,
+            "description": "This is the actual canvas element in the document",
+            "itemtype": "property",
+            "name": "elm",
+            "access": "protected",
+            "tagname": "",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 19,
+            "description": "The context which is required to get anything showing up",
+            "itemtype": "property",
+            "name": "context",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 34,
+            "description": "Fires whenever this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function is called",
+            "itemtype": "event",
+            "name": "drawing",
+            "params": [
+                {
+                    "name": "canvas",
+                    "description": "",
+                    "type": "$Canvas"
+                }
+            ],
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 41,
+            "description": "Calls all of the events registered to <a href=\"$Canvas.html#event_drawing\">drawing</a> event on this canvas object",
+            "itemtype": "method",
+            "name": "Draw",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 53,
+            "description": "Registers the canvas to be used for the main drawing",
+            "itemtype": "method",
+            "name": "registerCanvas",
+            "params": [
+                {
+                    "name": "elm",
+                    "description": "The canvas element to be used from the document",
+                    "type": "Object"
+                },
+                {
+                    "name": "widthPercent",
+                    "description": "The width scale factor of the canvas (if null uses default width set in the canvas tag)",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "null"
+                },
+                {
+                    "name": "heightPercent",
+                    "description": "The height scale factor of the canvas (if null uses default height set in the canvas tag)",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "null"
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": "$Canvas"
+        },
+        {
+            "file": "document.js",
+            "line": 7,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onmousemove",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The current x position of the mouse after the update",
+                    "type": "Int"
+                },
+                {
+                    "name": "y",
+                    "description": "The current y position of the mouse after the update",
+                    "type": "Int"
+                }
+            ],
+            "static": 1,
+            "class": "$Document"
+        },
+        {
+            "file": "document.js",
+            "line": 15,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onmousedown",
+            "static": 1,
+            "class": "$Document"
+        },
+        {
+            "file": "document.js",
+            "line": 21,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onmouseup",
+            "static": 1,
+            "class": "$Document"
+        },
+        {
+            "file": "document.js",
+            "line": 27,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onkeydown",
+            "params": [
+                {
+                    "name": "keycode",
+                    "description": "The code of the key that was pressed",
+                    "type": "Int"
+                }
+            ],
+            "static": 1,
+            "class": "$Document"
+        },
+        {
+            "file": "document.js",
+            "line": 34,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onkeyup",
+            "params": [
+                {
+                    "name": "keycode",
+                    "description": "The code of the key that was released",
+                    "type": "Int"
+                }
+            ],
+            "static": 1,
+            "class": "$Document"
+        },
+        {
+            "file": "event.js",
+            "line": 7,
+            "description": "The list of events to be fired when \"Fire\" is called",
+            "itemtype": "property",
+            "name": "events",
+            "access": "private",
+            "tagname": "",
+            "class": "$Event"
+        },
+        {
+            "file": "event.js",
+            "line": 14,
+            "description": "Registers events to this objects event array to be called",
+            "itemtype": "method",
+            "name": "Register",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "The function to be called",
+                    "type": "Function"
+                },
+                {
+                    "name": "obj",
+                    "description": "The object that the function belongs to",
+                    "type": "Object",
+                    "optional": true,
+                    "optdefault": "window"
+                }
+            ],
+            "class": "$Event"
+        },
+        {
+            "file": "event.js",
+            "line": 24,
+            "description": "Removes a specified function signature from the array",
+            "itemtype": "method",
+            "name": "Remove",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "$Event"
+        },
+        {
+            "file": "event.js",
+            "line": 38,
+            "description": "Goes through all of the registered events and fires them off",
+            "itemtype": "method",
+            "name": "Fire",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "All of the arguments to be mapped to the events (functions)",
+                    "type": "Array"
+                }
+            ],
+            "class": "$Event"
+        },
+        {
+            "file": "framework.js",
+            "line": 8,
+            "description": "The x dimension of this vector",
+            "itemtype": "property",
+            "name": "x",
+            "type": "Int",
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 14,
+            "description": "The y dimension of this vector",
+            "itemtype": "property",
+            "name": "y",
+            "type": "Int",
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 21,
+            "description": "Copys the x and y dimension of a $Vector2 to this one",
+            "itemtype": "method",
+            "name": "Set",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "The $Vector2 to have its x and y dimensions copied",
+                    "type": "$Vector2"
+                }
+            ],
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 34,
+            "description": "Transposes this vector by another vector by shifting (adding)",
+            "itemtype": "method",
+            "name": "Move",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "The vector to be added to this vector",
+                    "type": "$Vector2"
+                }
+            ],
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 44,
+            "description": "Get's the magnitude (pythagorean theorem) of this vector (the length of the hypotenuse of the right triangle produced by this vector)",
+            "itemtype": "method",
+            "name": "Magnitude",
+            "return": {
+                "description": "Float The length of the hypotenuse"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 53,
+            "description": "Get's the dot product of this vector and another",
+            "itemtype": "method",
+            "name": "Dot",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "The vector to be multiplied with this vector",
+                    "type": "$Vector2"
+                }
+            ],
+            "return": {
+                "description": "Float The result of dot product (vector multiplication)"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 63,
+            "description": "Get's the cross product of this vector and another\nNote: The cross product is often done with a 3 dimensional vector, so in this case it will actually return a scalar",
+            "itemtype": "method",
+            "name": "Cross",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "The vector to be multiplied with this vector",
+                    "type": "$Vector2"
+                }
+            ],
+            "return": {
+                "description": "Float The result of cross product (vector multiplication)"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 74,
+            "description": "This will return a new normalized $Vector2 of this vector",
+            "itemtype": "method",
+            "name": "Normalized",
+            "return": {
+                "description": "$Vector2 The normalized $Vector2"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 89,
+            "description": "Will get the distance between this vector and another supplied vector",
+            "itemtype": "method",
+            "name": "Distance",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "$Vector2"
+                }
+            ],
+            "return": {
+                "description": "Float The distance between this $Vector2 and the supplied $Vector2"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 99,
+            "description": "Will subtract this vector from another vector",
+            "itemtype": "method",
+            "name": "Difference",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "$vector2"
+                }
+            ],
+            "return": {
+                "description": "$Vector2 The result of this vector subtracted by a supplied vector (in that order)"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 109,
+            "description": "Will add this vector from another vector",
+            "itemtype": "method",
+            "name": "Sum",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "$vector2"
+                }
+            ],
+            "return": {
+                "description": "$Vector2 The result of this vector added by a supplied vector"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "framework.js",
+            "line": 129,
+            "description": "The red of this color which is between 0 and 255 (inclusinve)",
+            "itemtype": "property",
+            "name": "r",
+            "type": "Int",
+            "class": "$Color"
+        },
+        {
+            "file": "framework.js",
+            "line": 135,
+            "description": "The green of this color which is between 0 and 255 (inclusinve)",
+            "itemtype": "property",
+            "name": "g",
+            "type": "Int",
+            "class": "$Color"
+        },
+        {
+            "file": "framework.js",
+            "line": 141,
+            "description": "The blue of this color which is between 0 and 255 (inclusinve)",
+            "itemtype": "property",
+            "name": "b",
+            "type": "Int",
+            "class": "$Color"
+        },
+        {
+            "file": "framework.js",
+            "line": 147,
+            "description": "The alpha of this color which is between 0.0 and 1.0 (inclusinve)",
+            "itemtype": "property",
+            "name": "a",
+            "type": "Float",
+            "class": "$Color"
+        },
+        {
+            "file": "framework.js",
+            "line": 154,
+            "description": "Converts this color object to a canvas readable color string \"rgba(r,g,b,a)\" or \"rgb(r,g,b)\"",
+            "itemtype": "method",
+            "name": "ToStandard",
+            "params": [
+                {
+                    "name": "noAlpha",
+                    "description": "Set to false if alpha should not be included \"rgb(r,g,b)\"",
+                    "type": "Bool",
+                    "optional": true,
+                    "optdefault": "true"
+                }
+            ],
+            "return": {
+                "description": "String The canvas readable color string"
+            },
+            "class": "$Color"
+        },
+        {
+            "file": "framework.js",
+            "line": 178,
+            "description": "The x position of the $Rectangle",
+            "itemtype": "property",
+            "name": "x",
+            "type": "Int",
+            "class": "$Rectangle"
+        },
+        {
+            "file": "framework.js",
+            "line": 184,
+            "description": "The y position of the $Rectangle",
+            "itemtype": "property",
+            "name": "y",
+            "type": "Int",
+            "class": "$Rectangle"
+        },
+        {
+            "file": "framework.js",
+            "line": 190,
+            "description": "The width of the $Rectangle",
+            "itemtype": "property",
+            "name": "width",
+            "type": "Int",
+            "class": "$Rectangle"
+        },
+        {
+            "file": "framework.js",
+            "line": 196,
+            "description": "The height of the $Rectangle",
+            "itemtype": "property",
+            "name": "height",
+            "type": "Int",
+            "class": "$Rectangle"
+        },
+        {
+            "file": "framework.js",
+            "line": 202,
+            "description": "The color of the $Rectangle to be used for debug drawing",
+            "itemtype": "property",
+            "name": "color",
+            "type": "$Color",
+            "class": "$Rectangle"
+        },
+        {
+            "file": "framework.js",
+            "line": 209,
+            "description": "Checks to see if a point in 2D space (x and y) are within this $Rectangle's bounds",
+            "itemtype": "method",
+            "name": "Contains",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x position to check if within this $Rectangle",
+                    "type": "Int"
+                },
+                {
+                    "name": "y",
+                    "description": "The y position to check if within this $Rectangle",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": "$Rectangle"
+        },
+        {
+            "file": "framework.js",
+            "line": 221,
+            "description": "Check to see if this $Rectangle is intersecting another $Rectangle",
+            "itemtype": "method",
+            "name": "Intersects",
+            "params": [
+                {
+                    "name": "other",
+                    "description": "The other rectangle to check against",
+                    "type": "$Rectangle"
+                }
+            ],
+            "return": {
+                "description": "Literal True if intersection other rectangle"
+            },
+            "class": "$Rectangle"
+        },
+        {
+            "file": "framework.js",
+            "line": 246,
+            "description": "Debug draw the rectangle on the canvas with the supplied color\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main canvas object",
+            "itemtype": "method",
+            "name": "Draw",
+            "params": [
+                {
+                    "name": "canvas",
+                    "description": "The canvas to be drawn on",
+                    "type": "$Canvas"
+                }
+            ],
+            "class": "$Rectangle"
+        },
+        {
+            "file": "input.js",
+            "line": 107,
+            "description": "Fired when a key has been pressed",
+            "itemtype": "event",
+            "name": "keyDown",
+            "params": [
+                {
+                    "name": "keycode",
+                    "description": "The code of the key that was pressed",
+                    "type": "Int"
+                }
+            ],
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 113,
+            "description": "Fired when a key has been released",
+            "itemtype": "event",
+            "name": "keyUp",
+            "params": [
+                {
+                    "name": "keycode",
+                    "description": "The code of the key that was pressed",
+                    "type": "Int"
+                }
+            ],
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 119,
+            "description": "Fired when the mouse button has been pressed",
+            "itemtype": "event",
+            "name": "mouseDown",
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 124,
+            "description": "Fired when the mouse button has been released",
+            "itemtype": "event",
+            "name": "mouseUp",
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 129,
+            "description": "Fired when a key has changed position",
+            "itemtype": "event",
+            "name": "mouseMove",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x position of the mouse after the update",
+                    "type": "Int"
+                },
+                {
+                    "name": "y",
+                    "description": "The y position of the mouse after the update",
+                    "type": "Int"
+                }
+            ],
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 285,
+            "description": "Checks to see if the passed keyname matches a key that is currently being held down",
+            "itemtype": "method",
+            "name": "KeyDown",
+            "params": [
+                {
+                    "name": "keyname",
+                    "description": "The name of the key to check",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Literal True if the letter is currently held down"
+            },
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 295,
+            "description": "Checks to see if the passed keyname matches a key that is currently released",
+            "itemtype": "method",
+            "name": "KeyUp",
+            "params": [
+                {
+                    "name": "keyname",
+                    "description": "The name of the key to check",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Literal True if the letter is currently released"
+            },
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 305,
+            "description": "Checks to see if the mouse button is currently being held down",
+            "itemtype": "method",
+            "name": "MouseDown",
+            "return": {
+                "description": "Literal True if the mouse button is currently held down"
+            },
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 314,
+            "description": "Checks to see if the mouse button is currently released",
+            "itemtype": "method",
+            "name": "MouseDown",
+            "return": {
+                "description": "Literal True if the mouse button is currently released"
+            },
+            "class": "$Input"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 16,
+            "description": "The frames per second for this animation",
+            "itemtype": "property",
+            "name": "fps",
+            "type": "Int",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 22,
+            "description": "Used to count the elapsed time for frames",
+            "itemtype": "property",
+            "name": "fpsCounter",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 29,
+            "description": "The width of each sprite in the sprite sheet",
+            "itemtype": "property",
+            "name": "width",
+            "type": "Int",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 35,
+            "description": "The height of each sprite in the sprite sheet",
+            "itemtype": "property",
+            "name": "height",
+            "type": "Int",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 41,
+            "description": "The starting row on the spritesheet for the animation",
+            "itemtype": "property",
+            "name": "rowStart",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 48,
+            "description": "The starting column on the spritesheet for the animation",
+            "itemtype": "property",
+            "name": "columnStart",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 55,
+            "description": "The current row that the animation is on",
+            "itemtype": "property",
+            "name": "row",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 62,
+            "description": "The current column that the animation is on",
+            "itemtype": "property",
+            "name": "column",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 69,
+            "description": "The total count of rows for the animation",
+            "itemtype": "property",
+            "name": "rows",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 76,
+            "description": "The total amount of columns for the animation",
+            "itemtype": "property",
+            "name": "columns",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 83,
+            "description": "The amount of frames for this particular segment of the animation",
+            "itemtype": "property",
+            "name": "limit",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 90,
+            "description": "The current counter to check against the limit",
+            "itemtype": "property",
+            "name": "limitCount",
+            "type": "Int",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 97,
+            "description": "The position on the canvas that this animation is at",
+            "itemtype": "property",
+            "name": "position",
+            "type": "$Vector2",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 103,
+            "description": "The current cropping position for the image",
+            "itemtype": "property",
+            "name": "cropPosition",
+            "type": "$Vector2",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 110,
+            "description": "The image to be used for the animation",
+            "itemtype": "property",
+            "name": "image",
+            "type": "Image",
+            "access": "private",
+            "tagname": "",
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 122,
+            "description": "Sets the frame limit for the spritesheet animation",
+            "itemtype": "method",
+            "name": "SetLimit",
+            "params": [
+                {
+                    "name": "limit",
+                    "description": "How many frames the spritesheet animation should be limited to",
+                    "type": "Int"
+                }
+            ],
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 131,
+            "description": "Set the current and start row for the spritesheet animation",
+            "itemtype": "method",
+            "name": "SetRow",
+            "params": [
+                {
+                    "name": "num",
+                    "description": "The row number to be assigned to",
+                    "type": "Int"
+                }
+            ],
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 144,
+            "description": "Set the current and start column for the spritesheet animation",
+            "itemtype": "method",
+            "name": "SetColumn",
+            "params": [
+                {
+                    "name": "num",
+                    "description": "The column number to be assigned to",
+                    "type": "Int"
+                }
+            ],
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "spriteSheet.js",
+            "line": 157,
+            "description": "This will draw the individual sprite on the canvas\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main canvas object",
+            "itemtype": "method",
+            "name": "Draw",
+            "params": [
+                {
+                    "name": "canvas",
+                    "description": "The canvas element to be drawn on",
+                    "type": "$Canvas"
+                }
+            ],
+            "class": "$SpriteSheet"
+        },
+        {
+            "file": "web2d.js",
+            "line": 4,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "LoadModule",
+            "params": [
+                {
+                    "name": "moduleFile",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 6,
+            "description": "Finds the left offset in pixels of an element on the page",
+            "itemtype": "method",
+            "name": "GetLeft",
+            "params": [
+                {
+                    "name": "elm",
+                    "description": "The object to find its offset relative to the page",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Int The left offset of an object on the page"
+            },
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 22,
+            "description": "Finds the top offset in pixels of an element on the page",
+            "itemtype": "method",
+            "name": "GetTop",
+            "params": [
+                {
+                    "name": "elm",
+                    "description": "The object to find its offset relative to the page",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Int The top offset of an object on the page"
+            },
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 39,
+            "description": "<a href=\"$Event.html\">Event</a> stack for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onafterprint",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 45,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onbeforeprint",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 51,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onbeforeunload",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 57,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onerror",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 63,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onhaschange",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 69,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onload",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 75,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onmessage",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 81,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onoffline",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 87,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "ononline",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 93,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onpagehide",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 99,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onpageshow",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 105,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onpopstate",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 111,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onredo",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 117,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onresize",
+            "params": [
+                {
+                    "name": "width",
+                    "description": "The new width of the window",
+                    "type": "Int"
+                },
+                {
+                    "name": "height",
+                    "description": "The new height of the window",
+                    "type": "Int"
+                }
+            ],
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 125,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onstorage",
+            "static": 1,
+            "class": "$Window"
+        },
+        {
+            "file": "window.js",
+            "line": 131,
+            "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
+            "itemtype": "event",
+            "name": "onunload",
+            "static": 1,
+            "class": "$Window"
+        }
+    ],
+    "warnings": []
+}

@@ -1,9 +1,25 @@
+/**
+An object to manage a HTML5 <canvas> element
+@class $Canvas
+@param elm {Object} The canvas element on the page to reference
+@param [widthPercent=null] {Float} The width scale factor of the canvas (if null uses default width set in the canvas tag)
+@param [heightPercent=null] {Float} The height scale factor of the canvas (if null uses default height set in the canvas tag)
+*/
 var $Canvas = function(elm, widthPercent, heightPercent)
 {
 	if (elm === "undefined")
 		throw "The canvas id passed was not valid";
 	
+	/**
+	This is the actual canvas element in the document
+	@property elm
+	@protected
+	*/
 	this.elm				= elm;
+	/**
+	The context which is required to get anything showing up
+	@property context
+	*/
 	this.context			= this.elm.getContext("2d");
 
 	if (widthPercent != null)
@@ -12,22 +28,36 @@ var $Canvas = function(elm, widthPercent, heightPercent)
 	if (heightPercent != null)
 		this.elm.height = document.body.clientHeight * heightPercent;
 
-	console.log(heightPercent);
-	console.log(document.body.clientHeight);
-	console.log(this.elm.height);
-
 	this.elm.style.width	= this.elm.width + "px";
 	this.elm.style.height	= this.elm.height + "px";
+	
+	/**
+	Fires whenever this objects <a href="$Canvas.html#method_Draw">Draw</a> function is called
+	@event drawing
+	@param {$Canvas} canvas 
+	*/
 	this.drawing			= new $Event();
 	
+	/**
+	Calls all of the events registered to <a href="$Canvas.html#event_drawing">drawing</a> event on this canvas object
+	@method Draw
+	*/
 	this.Draw = function() {
 		this.drawing.Fire([this]);
-	}
+	};
 };
 
 var canvas = null;
 var requestId = 0;
 
+/**
+Registers the canvas to be used for the main drawing
+@method registerCanvas
+@param {Object} elm The canvas element to be used from the document
+@param [widthPercent=null] {Float} The width scale factor of the canvas (if null uses default width set in the canvas tag)
+@param [heightPercent=null] {Float} The height scale factor of the canvas (if null uses default height set in the canvas tag)
+@return 
+*/
 function registerCanvas(elm, widthPercent, heightPercent) {
 	if (canvas != null)
 		throw "Canvas already registered";
@@ -38,6 +68,9 @@ function registerCanvas(elm, widthPercent, heightPercent) {
 	Start();
 }
 
+//----------------------------------
+// The following is automatic to register the HTML5 animation callback from the browser
+//----------------------------------
 (function(){
 	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
 		window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
