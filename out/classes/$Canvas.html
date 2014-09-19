@@ -49,6 +49,8 @@
             
                 <li><a href="../classes/$Event.html">$Event</a></li>
             
+                <li><a href="../classes/$Image.html">$Image</a></li>
+            
                 <li><a href="../classes/$Input.html">$Input</a></li>
             
                 <li><a href="../classes/$Keys.html">$Keys</a></li>
@@ -122,10 +124,147 @@
 
 
 <div class="box intro">
-    <p>An object to manage a HTML5 <canvas> element</p>
+    <p>An object to manage a HTML5 <Canvas> element</p>
 
 </div>
 
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_$Canvas" class="method item">
+    <h3 class="name"><code>$Canvas</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>elm</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[widthPercent=null]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[heightPercent=null]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/canvas.js.html#l1"><code>canvas.js:1</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">elm</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The Canvas element on the page to reference</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[widthPercent=null]</code>
+                        <span class="type">Float</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The width scale factor of the Canvas (if null uses default width set in the Canvas tag)</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[heightPercent=null]</code>
+                        <span class="type">Float</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The height scale factor of the Canvas (if null uses default height set in the Canvas tag)</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+    </div>
 
 
 <div id="classdocs" class="tabview">
@@ -211,6 +350,13 @@
                                 
                             </li>
                         
+                            <li class="index-item event">
+                                <a href="#event_drawing">drawing</a>
+
+                                
+                                
+                            </li>
+                        
                     </ul>
                 </div>
             
@@ -253,7 +399,7 @@
             
         
         
-        <a href="../files/canvas.js.html#l41"><code>canvas.js:41</code></a>
+        <a href="../files/canvas.js.html#l48"><code>canvas.js:48</code></a>
         
         </p>
 
@@ -264,7 +410,7 @@
     </div>
 
     <div class="description">
-        <p>Calls all of the events registered to <a href="$Canvas.html#event_drawing">drawing</a> event on this canvas object</p>
+        <p>Calls all of the events registered to <a href="$Canvas.html#event_drawing">drawing</a> event on this Canvas object</p>
 
     </div>
 
@@ -334,7 +480,7 @@
             
         
         
-        <a href="../files/canvas.js.html#l53"><code>canvas.js:53</code></a>
+        <a href="../files/canvas.js.html#l61"><code>canvas.js:61</code></a>
         
         </p>
 
@@ -345,7 +491,7 @@
     </div>
 
     <div class="description">
-        <p>Registers the canvas to be used for the main drawing</p>
+        <p>Registers the Canvas to be used for the main drawing</p>
 
     </div>
 
@@ -364,7 +510,7 @@
                     
 
                     <div class="param-description">
-                        <p>The canvas element to be used from the document</p>
+                        <p>The Canvas element to be used from the document</p>
 
                     </div>
 
@@ -381,7 +527,7 @@
                     
 
                     <div class="param-description">
-                        <p>The width scale factor of the canvas (if null uses default width set in the canvas tag)</p>
+                        <p>The width scale factor of the Canvas (if null uses default width set in the Canvas tag)</p>
 
                     </div>
 
@@ -398,7 +544,7 @@
                     
 
                     <div class="param-description">
-                        <p>The height scale factor of the canvas (if null uses default height set in the canvas tag)</p>
+                        <p>The height scale factor of the Canvas (if null uses default height set in the Canvas tag)</p>
 
                     </div>
 
@@ -513,7 +659,7 @@
     </div>
 
     <div class="description">
-        <p>This is the actual canvas element in the document</p>
+        <p>This is the actual Canvas element in the document</p>
 
     </div>
 
@@ -568,6 +714,73 @@
     </div>
 
     <div class="description">
+        <p>Fires at the beginning this objects <a href="$Canvas.html#method_Draw">Draw</a> function before the <a href="$Canvas.html#event_Draw">drawing</a> event fires</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Event Payload:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">Canvas</code>
+                        <span class="type"><a href="../classes/$Canvas.html" class="crosslink">$Canvas</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_drawing" class="events item">
+    <h3 class="name"><code>drawing</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/canvas.js.html#l41"><code>canvas.js:41</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
         <p>Fires whenever this objects <a href="$Canvas.html#method_Draw">Draw</a> function is called</p>
 
     </div>
@@ -580,7 +793,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">canvas</code>
+                        <code class="param-name">Canvas</code>
                         <span class="type"><a href="../classes/$Canvas.html" class="crosslink">$Canvas</a></span>
                     
 

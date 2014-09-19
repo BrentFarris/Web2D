@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>document.js</title>
+    <title>image.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -104,81 +104,94 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: document.js</h1>
+                        <h1 class="file-heading">File: image.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-An extension to the main document object
-@class $Document
+A default image class that allows for easy drawing in the engine
+@class $Image
+@param {Image|String} src The native image object or string source of the image
+@param {$Rectangle} rect The rectangle for the image to be drawn in
 */
-var $Document = function() { };
-
-/**
-&lt;a href=&quot;$Event.html&quot;&gt;Event&lt;/a&gt; for the &quot;window&quot; object version of this function
-@event onmousemove
-@param {Int} x The current x position of the mouse after the update
-@param {Int} y The current y position of the mouse after the update
-@static
-*/
-$Document.onmousemove = new $Event();
-/**
-&lt;a href=&quot;$Event.html&quot;&gt;Event&lt;/a&gt; for the &quot;window&quot; object version of this function
-@event onmousedown
-@static
-*/
-$Document.onmousedown = new $Event();
-/**
-&lt;a href=&quot;$Event.html&quot;&gt;Event&lt;/a&gt; for the &quot;window&quot; object version of this function
-@event onmouseup
-@static
-*/
-$Document.onmouseup = new $Event();
-/**
-&lt;a href=&quot;$Event.html&quot;&gt;Event&lt;/a&gt; for the &quot;window&quot; object version of this function
-@event onkeydown
-@param {Int} keycode The code of the key that was pressed
-@static
-*/
-$Document.onkeydown = new $Event();
-/**
-&lt;a href=&quot;$Event.html&quot;&gt;Event&lt;/a&gt; for the &quot;window&quot; object version of this function
-@event onkeyup
-@param {Int} keycode The code of the key that was released
-@static
-*/
-$Document.onkeyup = new $Event();
-
-
-//----------------------------------
-// The following is automatic to register the base event callbacks for $Document
-//----------------------------------
-document.documentElement.onmousedown = function (e) { $Document.onmousedown.Fire(); };
-document.documentElement.onmouseup = function (e) { $Document.onmouseup.Fire(); };
-
-document.documentElement.onmousemove = function(e) {
-	e = e || window.event;
-	$Document.onmousemove.Fire([e.clientX, e.clientY]);
-};
-
-document.documentElement.onkeydown = function (e) {
-	var keycode;
-	if (window.event)
-		keycode = window.event.keyCode;
-	else if (e)
-		keycode = e.which;
-
-	$Document.onkeydown.Fire([keycode]);
-};
-
-document.documentElement.onkeyup = function (e) {
-	var keycode;
-	if (window.event)
-		keycode = window.event.keyCode;
-	else if (e)
-		keycode = e.which;
-
-	$Document.onkeyup.Fire([keycode]);
+var $Image = function(src, rect) {
+	/**
+	The actual native JavaScript Image object
+	@property image
+	*/
+	this.image = new Image();
+	/**
+	The rectangle for the image to be drawn in
+	@property rect
+	*/
+	this.rect = rect;
+	
+	if (src != null) {
+		if (typeof imgSrc == &quot;string&quot;)
+			this.image.src = src;
+		else
+			this.image = src;
+		
+		if (this.rect == null) {
+			this.rect.width = this.image.width;
+			this.rect.height = this.image.height;
+		}
+	}
+	
+	/**
+	Used to load in an image for this object
+	@method Load
+	@param {Image|String} src The native image object or string source of the image
+	*/
+	this.Load = function(src) {
+		if (typeof imgSrc == &quot;string&quot;)
+			this.image.src = src;
+		else
+			this.image = src;
+	};
+	
+	/**
+	Set the position for this object&#x27;s rectangle
+	@method Position
+	@param {Int} x The new x position for this object&#x27;s rectangle
+	@param {Int} y The new y position for this object&#x27;s rectangle
+	*/
+	this.Position = function(x, y) {
+		if (x != null) this.rect.x = x;
+		if (y != null) this.rect.y = y;
+	};
+	
+	/**
+	Resize how large this image is drawn onto the canvas
+	@method Resize
+	@param {Int} width The new width for this image to be drawn as
+	@param {Int} height The new height for this image to be drawn as
+	*/
+	this.Resize = function(width, height) {
+		this.rect.width = width;
+		this.rect.height = height;
+	};
+	
+	/**
+	Used to draw this image in a particular location on the canvas
+	@method Draw
+	@param {$Canvas} canvas The canvas object to draw this image on
+	@param {Int} x The x position for this image to be drawn at
+	@param {Int} y The y position for this image to be drawn at
+	*/
+	this.Draw = function(canvas, x, y) {
+		canvas.context.drawImage(this.image, x, y, this.rect.width, this.rect.height);
+	};
+	
+	/**
+	Used to draw this image on the canvas
+	Note: This is made to work with the canvas &lt;a href=&quot;$Canvas.html#event_drawing&quot;&gt;drawing&lt;/a&gt; event
+	@method SimpleDraw
+	@param {$Canvas} canvas The canvas object to draw this image on
+	*/
+	this.SimpleDraw = function(canvas) {
+		canvas.context.drawImage(this.image, this.rect.x, this.rect.y, this.rect.width, this.rect.height);
+	};
 };
 
     </pre>

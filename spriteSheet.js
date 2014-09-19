@@ -10,6 +10,7 @@ A helper class that allows to easily animate regular (same sized) sprite sheets
 @param {Int} fps The frames per second for this animation
 @param {Int} columns How many total columns this animtation has
 @param {Int} rows How many total rows this animation has
+@constructor
 */
 var $SpriteSheet = function(width, height, row, column, limit, imgSrc, fps, columns, rows)
 {
@@ -95,7 +96,7 @@ var $SpriteSheet = function(width, height, row, column, limit, imgSrc, fps, colu
 	*/
 	this.limitCount = 0;
 	/**
-	The position on the canvas that this animation is at
+	The position on the Canvas that this animation is at
 	@property position
 	@type $Vector2
 	*/
@@ -155,12 +156,12 @@ var $SpriteSheet = function(width, height, row, column, limit, imgSrc, fps, colu
 	};
 	
 	/**
-	This will draw the individual sprite on the canvas
-	Note: This function is designed to work with the <a href="$Canvas.html#event_drawing">drawing</a> $Event object of the main canvas object
+	This will draw the individual sprite on the Canvas
+	Note: This function is designed to work with the <a href="$Canvas.html#event_drawing">drawing</a> $Event object of the main Canvas object
 	@method Draw
-	@param {$Canvas} canvas The canvas element to be drawn on
+	@param {$Canvas} Canvas The Canvas element to be drawn on
 	*/
-	this.Draw = function(canvas) {
+	this.Draw = function(Canvas) {
 		this.cropPosition.x = this.width * this.column;
 		this.cropPosition.y = this.height * this.row;
 		
@@ -197,7 +198,7 @@ var $SpriteSheet = function(width, height, row, column, limit, imgSrc, fps, colu
 			}
 		}
 		
-		canvas.context.drawImage(this.image, this.cropPosition.x, this.cropPosition.y, this.width, this.height, this.position.x, this.position.y, this.width, this.height);
+		Canvas.context.drawImage(this.image, this.cropPosition.x, this.cropPosition.y, this.width, this.height, this.position.x, this.position.y, this.width, this.height);
 		
 		this.fpsCounter++;
 		

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>web2d.js</title>
+    <title>color.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -48,6 +48,8 @@
                 <li><a href="../classes/$Document.html">$Document</a></li>
             
                 <li><a href="../classes/$Event.html">$Event</a></li>
+            
+                <li><a href="../classes/$Image.html">$Image</a></li>
             
                 <li><a href="../classes/$Input.html">$Input</a></li>
             
@@ -102,41 +104,57 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: web2d.js</h1>
+                        <h1 class="file-heading">File: color.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-if (WEB2D_DIR === &quot;undefined&quot;)
-	WEB2D_DIR = &quot;&quot;;
-
 /**
- * Description
- * @method LoadModule
- * @param {} moduleFile
- * @return 
- */
-function LoadModule(moduleFile) {
-	var js = document.createElement(&quot;script&quot;);
-	js.type = &quot;text/javascript&quot;;
-	if (moduleFile.indexOf(&quot;.js&quot;) != moduleFile.length - 3) moduleFile += &quot;.js&quot;;
-	js.src = moduleFile;
-	document.body.appendChild(js);
-}
-
-var modules = new Array(
-	&quot;arrayExtensions.js&quot;,
-	&quot;event.js&quot;,
-	&quot;window.js&quot;,
-	&quot;document.js&quot;,
-	&quot;framework.js&quot;,
-	&quot;input.js&quot;,
-	&quot;spriteSheet.js&quot;,
-	&quot;canvas.js&quot;
+A basic class to handle color (rgba) and its conversions for Canvas
+@class $Color
+@param {Int} [r=255] A red value between 0 and 255 (inclusive)
+@param {Int} [g=255] A green value between 0 and 255 (inclusive)
+@param {Int} [b=255] A blue value between 0 and 255 (inclusive)
+@param {Float} [a=1.0] An alpha between 0.0 and 1.0 (inclusive)
+*/
+$Color = function(r, g, b, a) {
+	/**
+	The red of this color which is between 0 and 255 (inclusinve)
+	@property r
+	@type Int
+	*/
+	this.r = r == null ? 0 : 255;
+	/**
+	The green of this color which is between 0 and 255 (inclusinve)
+	@property g
+	@type Int
+	*/
+	this.g = g == null ? 0 : 255;
+	/**
+	The blue of this color which is between 0 and 255 (inclusinve)
+	@property b
+	@type Int
+	*/
+	this.b = b == null ? 0 : 255;
+	/**
+	The alpha of this color which is between 0.0 and 1.0 (inclusinve)
+	@property a
+	@type Float
+	*/
+	this.a = a == null ? 0 : 1.0;
 	
-);
-
-for (var i = 0; i &lt; modules.length; i++)
-	LoadModule(WEB2D_DIR + modules[i]);
+	/**
+	Converts this color object to a Canvas readable color string &quot;rgba(r,g,b,a)&quot; or &quot;rgb(r,g,b)&quot;
+	@method ToStandard
+	@param {Bool} [noAlpha=true] Set to false if alpha should not be included &quot;rgb(r,g,b)&quot;
+	@return String The Canvas readable color string
+	*/
+	this.ToStandard = function(noAlpha) {
+		if (noAlpha == null || !noAlpha)
+			return &quot;rgba(&quot; + this.r + &quot;,&quot; + this.g + &quot;,&quot; + this.b + &quot;,&quot; + this.a + &quot;)&quot;;
+		else
+			return &quot;rgb(&quot; + this.r + &quot;,&quot; + this.g + &quot;,&quot; + this.b + &quot;)&quot;;
+	};
+};
 
     </pre>
 </div>

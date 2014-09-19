@@ -20,3 +20,7 @@ function CheckCollision() {
 }
 
 Canvas.updating.Register(CheckCollision);
+
+function Tmp() { console.log("Hello"); }
+
+Input.mouseDown.Register(Tmp);

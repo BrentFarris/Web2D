@@ -1,26 +1,29 @@
 var KeyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var KeyNumberStrings = "0123456789";
-
-console.log("input");
+var Input = null;
+var Keys = null;
 
 /**
-A helper class to compare keycode information and names (should act as a singleton). When this file is included it will automatically make a global instance of this class named "keys"
+A helper class to compare keycode information and names (should act as a singleton). When this file is included it will automatically make a global instance of this class named "Keys"
 @class $Keys
+@constructor
 */
 var $Keys = function() {
+	if (Keys != null) return Keys; // Global Singleton
+	
 	this.tmp = 65;
-	for (var i = 0; i < this.keyString.length; i++) {
-		this[this.keyString.charAt(i)] = this.tmp++;
+	for (var i = 0; i < KeyString.length; i++) {
+		this[KeyString.charAt(i)] = this.tmp++;
 	}
 	
 	this.tmp = 48;
-	for (var i = 0; i < this.keyNumberStrings.length; i++) {
-		this["Num" + this.keyNumberStrings.charAt(i)] = this.tmp++;
+	for (var i = 0; i < KeyNumberStrings.length; i++) {
+		this["Num" + KeyNumberStrings.charAt(i)] = this.tmp++;
 	}
 	
 	this.tmp = 96;
-	for (var i = 0; i < this.keyNumberStrings.length; i++) {
-		this["Numpad" + this.keyNumberStrings.charAt(i)] = this.tmp++;
+	for (var i = 0; i < KeyNumberStrings.length; i++) {
+		this["Numpad" + KeyNumberStrings.charAt(i)] = this.tmp++;
 	}
 	
 	this.Left = 37;
@@ -40,7 +43,7 @@ var $Keys = function() {
 	this.Shift = 16;
 	this.Capslock = 20;
 	this.Tab = 9;
-	this.Tick = 192;
+	this.Backquote = 192;
 	this.Ctrl = 17;
 	this.Alt = 18;
 	
@@ -51,55 +54,56 @@ var $Keys = function() {
 	this.Decimal = 110;
 };
 
-var keys = new $Keys();
+Keys = new $Keys();
 
 /**
-The main input class for everything (should act as a singleton). When this file is included it will automatically make a global instance of this class named "input"
+The main Input class for everything (should act as a singleton). When this file is included it will automatically make a global instance of this class named "Input"
 @class $Input
+@constructor
 */
-var $Input = function()
-{
+var $Input = function() {
+	if (Input != null) return Input; // Global Singleton
+	
 	this.tmp = 65;
-	for (var i = 0; i < this.keyString.length; i++) {
-		this[this.keyString.charAt(i)] = false;
+	for (var i = 0; i < KeyString.length; i++) {
+		this[KeyString.charAt(i)] = false;
 	}
 	
 	this.tmp = 48;
-	for (var i = 0; i < this.keyNumberStrings.length; i++) {
-		this["num" + this.keyNumberStrings.charAt(i)] = false;
+	for (var i = 0; i < KeyNumberStrings.length; i++) {
+		this["num" + KeyNumberStrings.charAt(i)] = false;
 	}
 	
 	this.tmp = 96;
-	for (var i = 0; i < this.keyNumberStrings.length; i++) {
-		this["numpad" + this.keyNumberStrings.charAt(i)] = false;
+	for (var i = 0; i < KeyNumberStrings.length; i++) {
+		this["numpad" + KeyNumberStrings.charAt(i)] = false;
 	}
 	
-	this.left = false;
-	this.right = false;
-	this.up = false;
-	this.down = false;
-	this.enter = false;
-	this.space = false;
-	this.eriod = false;
-	this.comma = false;
-	this.slash = false;
-	this.backslash = false;
-	this.escape = false;
-	this.backspace = false;
-	this.backspace = false;
+	this.Left = false;
+	this.Right = false;
+	this.Up = false;
+	this.Down = false;
+	this.Enter = false;
+	this.Space = false;
+	this.Period = false;
+	this.Comma = false;
+	this.Slash = false;
+	this.Backslash = false;
+	this.Escape = false;
+	this.Backspace = false;
 	
-	this.shift = false;
-	this.capslock = false;
-	this.tab = false;
-	this.tick = false;
-	this.ctrl = false;
-	this.alt = false;
+	this.Shift = false;
+	this.Capslock = false;
+	this.Tab = false;
+	this.Backquote = false;
+	this.Ctrl = false;
+	this.Alt = false;
 	
-	this.add = false;
-	this.subtract = false;
-	this.divide = false;
-	this.multiply = false;
-	this.decimal = false;
+	this.Add = false;
+	this.Subtract = false;
+	this.Divide = false;
+	this.Multiply = false;
+	this.Decimal = false;
 	
 	this.mouseIsDown = false;
 	this.mousePosition = new $Vector2(0);
@@ -138,150 +142,220 @@ var $Input = function()
 	
 	this.SetKeyDown = function(keycode) {
 		for (var i = 0; i < KeyString.length; i++) {
-			if (keycode == keys[KeyString[i]]) {
+			if (keycode == Keys[KeyString[i]]) {
+				if (this[KeyString.charAt(i)])
+					return false;
+				
 				this[KeyString.charAt(i)] = true;
-				return;
+				return true;
 			}
 		}
 		
 		for (var i = 0; i < KeyNumberStrings.length; i++) {
-			if (keycode == keys["Num" + KeyNumberStrings[i]]) {
+			if (keycode == Keys["Num" + KeyNumberStrings[i]]) {
+				if (this["Num" + KeyNumberStrings.charAt(i)])
+					return false;
+				
 				this["Num" + KeyNumberStrings.charAt(i)] = true;
-				return;
+				return true;
 			}
 		}
 		
 		for (var i = 0; i < KeyNumberStrings.length; i++) {
-			if (keycode == keys["Numpad" + KeyNumberStrings[i]]) {
+			if (keycode == Keys["Numpad" + KeyNumberStrings[i]]) {
+				if (this["Numpad" + KeyNumberStrings.charAt(i)])
+					return false;
+					
 				this["Numpad" + KeyNumberStrings.charAt(i)] = true;
-				return;
+				return true;
 			}
 		}
 		
-		if (keycode == keys.Left)
-			this.left = true;
-		else if (keycode == keys.Right)
-			this.right = true;
-		else if (keycode == keys.Up)
-			this.up = true;
-		else if (keycode == keys.Down)
-			this.down = true;
-		else if (keycode == keys.Enter)
-			this.enter = true;
-		else if (keycode == keys.Space)
-			this.space = true;
-		else if (keycode == keys.Period)
-			this.period = true;
-		else if (keycode == keys.Comma)
-			this.comma = true;
-		else if (keycode == keys.Slash)
-			this.slash = true;
-		else if (keycode == keys.Backslash)
-			this.backslash = true;
-		else if (keycode == keys.Escape)
-			this.escape = true;
-		else if (keycode == keys.Backspace)
-			this.backspace = true;
-		else if (keycode == keys.Delete)
-			this.delete = true;
+		var startVal = false;
+		if (keycode == Keys.Left) {
+			startVal = this.Left;
+			this.Left = true;
+		} else if (keycode == Keys.Right) {
+			startVal = this.Right;
+			this.Right = true;
+		} else if (keycode == Keys.Up) {
+			startVal = this.Up;
+			this.Up = true;
+		} else if (keycode == Keys.Down) {
+			startVal = this.Down;
+			this.Down = true;
+		} else if (keycode == Keys.Enter) {
+			startVal = this.Enter;
+			this.Enter = true;
+		} else if (keycode == Keys.Space) {
+			startVal = this.Space;
+			this.Space = true;
+		} else if (keycode == Keys.Period) {
+			startVal = this.Period;
+			this.Period = true;
+		} else if (keycode == Keys.Comma) {
+			startVal = this.Comma;
+			this.Comma = true;
+		} else if (keycode == Keys.Slash) {
+			startVal = this.Slash;
+			this.Slash = true;
+		} else if (keycode == Keys.Backslash) {
+			startVal = this.Backslash;
+			this.Backslash = true;
+		} else if (keycode == Keys.Escape) {
+			startVal = this.Escape;
+			this.Escape = true;
+		} else if (keycode == Keys.Backspace) {
+			startVal = this.Backspace;
+			this.Backspace = true;
+		} else if (keycode == Keys.Delete) {
+			startVal = this.Delete;
+			this.Delete = true;
+		} else if (keycode == Keys.Shift) {
+			startVal = this.Shift;
+			this.Shift = true;
+		} else if (keycode == Keys.Capslock) {
+			startVal = this.Capslock;
+			this.Capslock = true;
+		} else if (keycode == Keys.Tab) {
+			startVal = this.Tab;
+			this.Tab = true;
+		} else if (keycode == Keys.Backquote) {
+			startVal = this.Backquote;
+			this.Backquote = true;
+		} else if (keycode == Keys.Ctrl) {
+			startVal = this.Ctrl;
+			this.Ctrl = true;
+		} else if (keycode == Keys.Alt) {
+			startVal = this.Alt;
+			this.Alt = true;
+		} else if (keycode == Keys.Add) {
+			startVal = this.Add;
+			this.Addtrue;
+		} else if (keycode == Keys.Subtract) {
+			startVal = this.Subtract;
+			this.Subtract = true;
+		} else if (keycode == Keys.Divide) {
+			startVal = this.Divide;
+			this.Divide = true;
+		} else if (keycode == Keys.Multiply) {
+			startVal = this.Multiply;
+			this.Multiply = true;
+		} else if (keycode == Keys.Decimal) {
+			startVal = this.Decimal;
+			this.Decimal = true;
+		}
 		
-		if (keycode == keys.Shift)
-			this.shift = true;
-		else if (keycode == keys.Capslock)
-			this.capslock = true;
-		else if (keycode == keys.Tab)
-			this.tab = true;
-		else if (keycode == keys.Tick)
-			this.tick = true;
-		else if (keycode == keys.Ctrl)
-			this.ctrl = true;
-		else if (keycode == keys.Alt)
-			this.alt = true;
-		
-		if (keycode == keys.Add)
-			this.add = true;
-		else if (keycode == keys.Subtract)
-			this.subtract = true;
-		else if (keycode == keys.Divide)
-			this.divide = true;
-		else if (keycode == keys.Multiply)
-			this.multiply = true;
-		else if (keycode == keys.Decimal)
-			this.decimal = true;
+		return !startVal;
 	};
 	
 	this.SetKeyUp = function(keycode) {
 		for (var i = 0; i < KeyString.length; i++) {
-			if (keycode == keys[KeyString[i]]) {
+			if (keycode == Keys[KeyString[i]]) {
+				if (!this[KeyString.charAt(i)])
+					return false;
+				
 				this[KeyString.charAt(i)] = false;
-				return;
+				return true;
 			}
 		}
 		
 		for (var i = 0; i < KeyNumberStrings.length; i++) {
-			if (keycode == keys["Num" + KeyNumberStrings[i]]) {
+			if (keycode == Keys["Num" + KeyNumberStrings[i]]) {
+				if (!this["Num" + KeyNumberStrings.charAt(i)])
+					return false;
+				
 				this["Num" + KeyNumberStrings.charAt(i)] = false;
-				return;
+				return true;
 			}
 		}
 		
 		for (var i = 0; i < KeyNumberStrings.length; i++) {
-			if (keycode == keys["Numpad" + KeyNumberStrings[i]]) {
+			if (keycode == Keys["Numpad" + KeyNumberStrings[i]]) {
+				if (!this["Numpad" + KeyNumberStrings.charAt(i)])
+					return false;
+					
 				this["Numpad" + KeyNumberStrings.charAt(i)] = false;
-				return;
+				return true;
 			}
 		}
 		
-		if (keycode == keys.Left)
-			this.left = false;
-		else if (keycode == keys.Right)
-			this.right = false;
-		else if (keycode == keys.Up)
-			this.up = false;
-		else if (keycode == keys.Down)
-			this.down = false;
-		else if (keycode == keys.Enter)
-			this.enter = false;
-		else if (keycode == keys.Space)
-			this.space = false;
-		else if (keycode == keys.Period)
-			this.period = false;
-		else if (keycode == keys.Comma)
-			this.comma = false;
-		else if (keycode == keys.Slash)
-			this.slash = false;
-		else if (keycode == keys.Backslash)
-			this.backslash = false;
-		else if (keycode == keys.Escape)
-			this.escape = false;
-		else if (keycode == keys.Backspace)
-			this.backspace = false;
-		else if (keycode == keys.Delete)
-			this.delete = false;
+		var startVal = false;
+		if (keycode == Keys.Left) {
+			startVal = this.Left;
+			this.Left = false;
+		} else if (keycode == Keys.Right) {
+			startVal = this.Right;
+			this.Right = false;
+		} else if (keycode == Keys.Up) {
+			startVal = this.Up;
+			this.Up = false;
+		} else if (keycode == Keys.Down) {
+			startVal = this.Down;
+			this.Down = false;
+		} else if (keycode == Keys.Enter) {
+			startVal = this.Enter;
+			this.Enter = false;
+		} else if (keycode == Keys.Space) {
+			startVal = this.Space;
+			this.Space = false;
+		} else if (keycode == Keys.Period) {
+			startVal = this.Period;
+			this.Period = false;
+		} else if (keycode == Keys.Comma) {
+			startVal = this.Comma;
+			this.Comma = false;
+		} else if (keycode == Keys.Slash) {
+			startVal = this.Slash;
+			this.Slash = false;
+		} else if (keycode == Keys.Backslash) {
+			startVal = this.Backslash;
+			this.Backslash = false;
+		} else if (keycode == Keys.Escape) {
+			startVal = this.Escape;
+			this.Escape = false;
+		} else if (keycode == Keys.Backspace) {
+			startVal = this.Backspace;
+			this.Backspace = false;
+		} else if (keycode == Keys.Delete) {
+			startVal = this.Delete;
+			this.Delete = false;
+		} else if (keycode == Keys.Shift) {
+			startVal = this.Shift;
+			this.Shift = false;
+		} else if (keycode == Keys.Capslock) {
+			startVal = this.Capslock;
+			this.Capslock = false;
+		} else if (keycode == Keys.Tab) {
+			startVal = this.Tab;
+			this.Tab = false;
+		} else if (keycode == Keys.Backquote) {
+			startVal = this.Backquote;
+			this.Backquote = false;
+		} else if (keycode == Keys.Ctrl) {
+			startVal = this.Ctrl;
+			this.Ctrl = false;
+		} else if (keycode == Keys.Alt) {
+			startVal = this.Alt;
+			this.Alt = false;
+		} else if (keycode == Keys.Add) {
+			startVal = this.Add;
+			this.Add = false;
+		} else if (keycode == Keys.Subtract) {
+			startVal = this.Subtract;
+			this.Subtract = false;
+		} else if (keycode == Keys.Divide) {
+			startVal = this.Divide;
+			this.Divide = false;
+		} else if (keycode == Keys.Multiply) {
+			startVal = this.Multiply;
+			this.Multiply = false;
+		} else if (keycode == Keys.Decimal) {
+			startVal = this.Decimal;
+			this.Decimal = false;
+		}
 		
-		if (keycode == keys.Shift)
-			this.shift = false;
-		else if (keycode == keys.Capslock)
-			this.capslock = false;
-		else if (keycode == keys.Tab)
-			this.tab = false;
-		else if (keycode == keys.Tick)
-			this.tick = false;
-		else if (keycode == keys.Ctrl)
-			this.ctrl = false;
-		else if (keycode == keys.Alt)
-			this.alt = false;
-		
-		if (keycode == keys.Add)
-			this.add = false;
-		else if (keycode == keys.Subtract)
-			this.subtract = false;
-		else if (keycode == keys.Divide)
-			this.divide = false;
-		else if (keycode == keys.Multiply)
-			this.multiply = false;
-		else if (keycode == keys.Decimal)
-			this.decimal = false;
+		return startVal;
 	};
 	
 	/**
@@ -291,7 +365,7 @@ var $Input = function()
 	@return Literal True if the letter is currently held down
 	*/
 	this.KeyDown = function(keyname) {
-		return this[letter[0].toUpperCase()];
+		return this[keyname.toUpperCase()];
 	};
 	
 	/**
@@ -301,7 +375,7 @@ var $Input = function()
 	@return Literal True if the letter is currently released
 	*/
 	this.KeyUp = function(keyname) {
-		return !this[letter[0].toUpperCase()];
+		return !this[keyname.toUpperCase()];
 	};
 	
 	/**
@@ -327,32 +401,32 @@ var $Input = function()
 //----------------------------------
 // The following is automatic to register all the key and moues base callbacks
 //----------------------------------
-var input = new $Input();
+Input = new $Input();
 
 function InputMousePosition(x, y) {
-	input.mousePosition.x = x - input.offset.x;
-	input.mousePosition.y = y - input.offset.y;
-	input.mouseMove.Fire([input.mousePosition.x, input.mousePosition.y]);
+	Input.mousePosition.x = x - Input.offset.x;
+	Input.mousePosition.y = y - Input.offset.y;
+	Input.mouseMove.Fire([Input.mousePosition.x, Input.mousePosition.y]);
 }
 
 function InputMouseDown() {
-	input.mouseIsDown = true;
-	input.mouseDown.Fire();
+	Input.mouseIsDown = true;
+	Input.mouseDown.Fire();
 }
 
 function InputMouseUp() {
-	input.mouseIsDown = false;
-	input.mouseUp.Fire();
+	Input.mouseIsDown = false;
+	Input.mouseUp.Fire();
 }
 
 function InputKeyDown(keycode) {
-	input.SetKeyDown(keycode);
-	input.keyDown.Fire(keycode);
+	if (Input.SetKeyDown(keycode))
+		Input.keyDown.Fire([keycode]);
 }
 
 function InputKeyUp(keycode) {
-	input.SetKeyUp(keycode);
-	input.keyUp.Fire(keycode);
+	if (Input.SetKeyUp(keycode))
+		Input.keyUp.Fire([keycode]);
 }
 
 $Document.onmousemove.Register(InputMousePosition);

@@ -19,6 +19,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "color.js": {
+            "name": "color.js",
+            "modules": {},
+            "classes": {
+                "$Color": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "document.js": {
             "name": "document.js",
             "modules": {},
@@ -37,13 +46,11 @@
             "fors": {},
             "namespaces": {}
         },
-        "framework.js": {
-            "name": "framework.js",
+        "image.js": {
+            "name": "image.js",
             "modules": {},
             "classes": {
-                "$Vector2": 1,
-                "$Color": 1,
-                "$Rectangle": 1
+                "$Image": 1
             },
             "fors": {},
             "namespaces": {}
@@ -58,6 +65,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "rectangle.js": {
+            "name": "rectangle.js",
+            "modules": {},
+            "classes": {
+                "$Rectangle": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "spriteSheet.js": {
             "name": "spriteSheet.js",
             "modules": {},
@@ -67,10 +83,12 @@
             "fors": {},
             "namespaces": {}
         },
-        "web2d.js": {
-            "name": "web2d.js",
+        "vector2.js": {
+            "name": "vector2.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "$Vector2": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -108,81 +126,29 @@
             "extension_for": [],
             "file": "canvas.js",
             "line": 1,
-            "description": "An object to manage a HTML5 <canvas> element",
+            "description": "An object to manage a HTML5 <Canvas> element",
             "params": [
                 {
                     "name": "elm",
-                    "description": "The canvas element on the page to reference",
+                    "description": "The Canvas element on the page to reference",
                     "type": "Object"
                 },
                 {
                     "name": "widthPercent",
-                    "description": "The width scale factor of the canvas (if null uses default width set in the canvas tag)",
+                    "description": "The width scale factor of the Canvas (if null uses default width set in the Canvas tag)",
                     "type": "Float",
                     "optional": true,
                     "optdefault": "null"
                 },
                 {
                     "name": "heightPercent",
-                    "description": "The height scale factor of the canvas (if null uses default height set in the canvas tag)",
+                    "description": "The height scale factor of the Canvas (if null uses default height set in the Canvas tag)",
                     "type": "Float",
                     "optional": true,
                     "optdefault": "null"
                 }
-            ]
-        },
-        "$Document": {
-            "name": "$Document",
-            "shortname": "$Document",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "file": "document.js",
-            "line": 1,
-            "description": "An extension to the main document object"
-        },
-        "$Event": {
-            "name": "$Event",
-            "shortname": "$Event",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "file": "event.js",
-            "line": 1,
-            "description": "The event class is responsible for registering multiple events to one function call much like C#'s \"event\" type",
+            ],
             "is_constructor": 1
-        },
-        "$Vector2": {
-            "name": "$Vector2",
-            "shortname": "$Vector2",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "file": "framework.js",
-            "line": 1,
-            "description": "A basic 2 dimensional vector",
-            "params": [
-                {
-                    "name": "x",
-                    "description": "The x dimension of the vector",
-                    "type": "Float",
-                    "optional": true,
-                    "optdefault": "0"
-                },
-                {
-                    "name": "y",
-                    "description": "The y dimension of the vector",
-                    "type": "Float",
-                    "optional": true,
-                    "optdefault": "0"
-                }
-            ]
         },
         "$Color": {
             "name": "$Color",
@@ -192,9 +158,9 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "framework.js",
-            "line": 120,
-            "description": "A basic class to handle color (rgba) and its conversions for canvas",
+            "file": "color.js",
+            "line": 1,
+            "description": "A basic class to handle color (rgba) and its conversions for Canvas",
             "params": [
                 {
                     "name": "r",
@@ -226,6 +192,81 @@
                 }
             ]
         },
+        "$Document": {
+            "name": "$Document",
+            "shortname": "$Document",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "document.js",
+            "line": 1,
+            "description": "An extension to the main document object"
+        },
+        "$Event": {
+            "name": "$Event",
+            "shortname": "$Event",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "event.js",
+            "line": 1,
+            "description": "The event class is responsible for registering multiple events to one function call much like C#'s \"event\" type",
+            "is_constructor": 1
+        },
+        "$Image": {
+            "name": "$Image",
+            "shortname": "$Image",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "image.js",
+            "line": 1,
+            "description": "A default image class that allows for easy drawing in the engine",
+            "params": [
+                {
+                    "name": "src",
+                    "description": "The native image object or string source of the image",
+                    "type": "Image|String"
+                },
+                {
+                    "name": "rect",
+                    "description": "The rectangle for the image to be drawn in",
+                    "type": "$Rectangle"
+                }
+            ]
+        },
+        "$Keys": {
+            "name": "$Keys",
+            "shortname": "$Keys",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "input.js",
+            "line": 6,
+            "description": "A helper class to compare keycode information and names (should act as a singleton). When this file is included it will automatically make a global instance of this class named \"Keys\"",
+            "is_constructor": 1
+        },
+        "$Input": {
+            "name": "$Input",
+            "shortname": "$Input",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "input.js",
+            "line": 59,
+            "description": "The main Input class for everything (should act as a singleton). When this file is included it will automatically make a global instance of this class named \"Input\"",
+            "is_constructor": 1
+        },
         "$Rectangle": {
             "name": "$Rectangle",
             "shortname": "$Rectangle",
@@ -234,8 +275,8 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "framework.js",
-            "line": 168,
+            "file": "rectangle.js",
+            "line": 1,
             "description": "A simple rectangle that can be used for placement, collision detection or even for debugging",
             "params": [
                 {
@@ -264,30 +305,6 @@
                     "type": "$Color"
                 }
             ]
-        },
-        "$Keys": {
-            "name": "$Keys",
-            "shortname": "$Keys",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "file": "input.js",
-            "line": 4,
-            "description": "A helper class to compare keycode information and names (should act as a singleton). When this file is included it will automatically make a global instance of this class named \"keys\""
-        },
-        "$Input": {
-            "name": "$Input",
-            "shortname": "$Input",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "file": "input.js",
-            "line": 54,
-            "description": "The main input class for everything (should act as a singleton). When this file is included it will automatically make a global instance of this class named \"input\""
         },
         "$SpriteSheet": {
             "name": "$SpriteSheet",
@@ -347,6 +364,35 @@
                     "name": "rows",
                     "description": "How many total rows this animation has",
                     "type": "Int"
+                }
+            ],
+            "is_constructor": 1
+        },
+        "$Vector2": {
+            "name": "$Vector2",
+            "shortname": "$Vector2",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "vector2.js",
+            "line": 1,
+            "description": "A basic 2 dimensional vector",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x dimension of the vector",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "0"
+                },
+                {
+                    "name": "y",
+                    "description": "The y dimension of the vector",
+                    "type": "Float",
+                    "optional": true,
+                    "optdefault": "0"
                 }
             ]
         },
@@ -464,7 +510,7 @@
         {
             "file": "canvas.js",
             "line": 13,
-            "description": "This is the actual canvas element in the document",
+            "description": "This is the actual Canvas element in the document",
             "itemtype": "property",
             "name": "elm",
             "access": "protected",
@@ -482,12 +528,12 @@
         {
             "file": "canvas.js",
             "line": 34,
-            "description": "Fires whenever this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function is called",
+            "description": "Fires at the beginning this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function before the <a href=\"$Canvas.html#event_Draw\">drawing</a> event fires",
             "itemtype": "event",
             "name": "drawing",
             "params": [
                 {
-                    "name": "canvas",
+                    "name": "Canvas",
                     "description": "",
                     "type": "$Canvas"
                 }
@@ -497,33 +543,48 @@
         {
             "file": "canvas.js",
             "line": 41,
-            "description": "Calls all of the events registered to <a href=\"$Canvas.html#event_drawing\">drawing</a> event on this canvas object",
+            "description": "Fires whenever this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function is called",
+            "itemtype": "event",
+            "name": "drawing",
+            "params": [
+                {
+                    "name": "Canvas",
+                    "description": "",
+                    "type": "$Canvas"
+                }
+            ],
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 48,
+            "description": "Calls all of the events registered to <a href=\"$Canvas.html#event_drawing\">drawing</a> event on this Canvas object",
             "itemtype": "method",
             "name": "Draw",
             "class": "$Canvas"
         },
         {
             "file": "canvas.js",
-            "line": 53,
-            "description": "Registers the canvas to be used for the main drawing",
+            "line": 61,
+            "description": "Registers the Canvas to be used for the main drawing",
             "itemtype": "method",
             "name": "registerCanvas",
             "params": [
                 {
                     "name": "elm",
-                    "description": "The canvas element to be used from the document",
+                    "description": "The Canvas element to be used from the document",
                     "type": "Object"
                 },
                 {
                     "name": "widthPercent",
-                    "description": "The width scale factor of the canvas (if null uses default width set in the canvas tag)",
+                    "description": "The width scale factor of the Canvas (if null uses default width set in the Canvas tag)",
                     "type": "Float",
                     "optional": true,
                     "optdefault": "null"
                 },
                 {
                     "name": "heightPercent",
-                    "description": "The height scale factor of the canvas (if null uses default height set in the canvas tag)",
+                    "description": "The height scale factor of the Canvas (if null uses default height set in the Canvas tag)",
                     "type": "Float",
                     "optional": true,
                     "optdefault": "null"
@@ -533,6 +594,62 @@
                 "description": ""
             },
             "class": "$Canvas"
+        },
+        {
+            "file": "color.js",
+            "line": 10,
+            "description": "The red of this color which is between 0 and 255 (inclusinve)",
+            "itemtype": "property",
+            "name": "r",
+            "type": "Int",
+            "class": "$Color"
+        },
+        {
+            "file": "color.js",
+            "line": 16,
+            "description": "The green of this color which is between 0 and 255 (inclusinve)",
+            "itemtype": "property",
+            "name": "g",
+            "type": "Int",
+            "class": "$Color"
+        },
+        {
+            "file": "color.js",
+            "line": 22,
+            "description": "The blue of this color which is between 0 and 255 (inclusinve)",
+            "itemtype": "property",
+            "name": "b",
+            "type": "Int",
+            "class": "$Color"
+        },
+        {
+            "file": "color.js",
+            "line": 28,
+            "description": "The alpha of this color which is between 0.0 and 1.0 (inclusinve)",
+            "itemtype": "property",
+            "name": "a",
+            "type": "Float",
+            "class": "$Color"
+        },
+        {
+            "file": "color.js",
+            "line": 35,
+            "description": "Converts this color object to a Canvas readable color string \"rgba(r,g,b,a)\" or \"rgb(r,g,b)\"",
+            "itemtype": "method",
+            "name": "ToStandard",
+            "params": [
+                {
+                    "name": "noAlpha",
+                    "description": "Set to false if alpha should not be included \"rgb(r,g,b)\"",
+                    "type": "Bool",
+                    "optional": true,
+                    "optdefault": "true"
+                }
+            ],
+            "return": {
+                "description": "String The Canvas readable color string"
+            },
+            "class": "$Color"
         },
         {
             "file": "document.js",
@@ -668,224 +785,243 @@
             "class": "$Event"
         },
         {
-            "file": "framework.js",
+            "file": "image.js",
             "line": 8,
-            "description": "The x dimension of this vector",
+            "description": "The actual native JavaScript Image object",
             "itemtype": "property",
-            "name": "x",
-            "type": "Int",
-            "class": "$Vector2"
+            "name": "image",
+            "class": "$Image"
         },
         {
-            "file": "framework.js",
-            "line": 14,
-            "description": "The y dimension of this vector",
+            "file": "image.js",
+            "line": 13,
+            "description": "The rectangle for the image to be drawn in",
             "itemtype": "property",
-            "name": "y",
-            "type": "Int",
-            "class": "$Vector2"
+            "name": "rect",
+            "class": "$Image"
         },
         {
-            "file": "framework.js",
-            "line": 21,
-            "description": "Copys the x and y dimension of a $Vector2 to this one",
+            "file": "image.js",
+            "line": 31,
+            "description": "Used to load in an image for this object",
             "itemtype": "method",
-            "name": "Set",
+            "name": "Load",
             "params": [
                 {
-                    "name": "vector",
-                    "description": "The $Vector2 to have its x and y dimensions copied",
-                    "type": "$Vector2"
+                    "name": "src",
+                    "description": "The native image object or string source of the image",
+                    "type": "Image|String"
                 }
             ],
-            "class": "$Vector2"
+            "class": "$Image"
         },
         {
-            "file": "framework.js",
-            "line": 34,
-            "description": "Transposes this vector by another vector by shifting (adding)",
+            "file": "image.js",
+            "line": 43,
+            "description": "Set the position for this object's rectangle",
             "itemtype": "method",
-            "name": "Move",
+            "name": "Position",
             "params": [
                 {
-                    "name": "vector",
-                    "description": "The vector to be added to this vector",
-                    "type": "$Vector2"
+                    "name": "x",
+                    "description": "The new x position for this object's rectangle",
+                    "type": "Int"
+                },
+                {
+                    "name": "y",
+                    "description": "The new y position for this object's rectangle",
+                    "type": "Int"
                 }
             ],
-            "class": "$Vector2"
+            "class": "$Image"
         },
         {
-            "file": "framework.js",
-            "line": 44,
-            "description": "Get's the magnitude (pythagorean theorem) of this vector (the length of the hypotenuse of the right triangle produced by this vector)",
+            "file": "image.js",
+            "line": 54,
+            "description": "Resize how large this image is drawn onto the canvas",
             "itemtype": "method",
-            "name": "Magnitude",
-            "return": {
-                "description": "Float The length of the hypotenuse"
-            },
-            "class": "$Vector2"
-        },
-        {
-            "file": "framework.js",
-            "line": 53,
-            "description": "Get's the dot product of this vector and another",
-            "itemtype": "method",
-            "name": "Dot",
+            "name": "Resize",
             "params": [
                 {
-                    "name": "vector",
-                    "description": "The vector to be multiplied with this vector",
-                    "type": "$Vector2"
+                    "name": "width",
+                    "description": "The new width for this image to be drawn as",
+                    "type": "Int"
+                },
+                {
+                    "name": "height",
+                    "description": "The new height for this image to be drawn as",
+                    "type": "Int"
                 }
             ],
-            "return": {
-                "description": "Float The result of dot product (vector multiplication)"
-            },
-            "class": "$Vector2"
+            "class": "$Image"
         },
         {
-            "file": "framework.js",
-            "line": 63,
-            "description": "Get's the cross product of this vector and another\nNote: The cross product is often done with a 3 dimensional vector, so in this case it will actually return a scalar",
+            "file": "image.js",
+            "line": 65,
+            "description": "Used to draw this image in a particular location on the canvas",
             "itemtype": "method",
-            "name": "Cross",
+            "name": "Draw",
             "params": [
                 {
-                    "name": "vector",
-                    "description": "The vector to be multiplied with this vector",
-                    "type": "$Vector2"
+                    "name": "canvas",
+                    "description": "The canvas object to draw this image on",
+                    "type": "$Canvas"
+                },
+                {
+                    "name": "x",
+                    "description": "The x position for this image to be drawn at",
+                    "type": "Int"
+                },
+                {
+                    "name": "y",
+                    "description": "The y position for this image to be drawn at",
+                    "type": "Int"
                 }
             ],
-            "return": {
-                "description": "Float The result of cross product (vector multiplication)"
-            },
-            "class": "$Vector2"
+            "class": "$Image"
         },
         {
-            "file": "framework.js",
-            "line": 74,
-            "description": "This will return a new normalized $Vector2 of this vector",
+            "file": "image.js",
+            "line": 76,
+            "description": "Used to draw this image on the canvas\nNote: This is made to work with the canvas <a href=\"$Canvas.html#event_drawing\">drawing</a> event",
             "itemtype": "method",
-            "name": "Normalized",
-            "return": {
-                "description": "$Vector2 The normalized $Vector2"
-            },
-            "class": "$Vector2"
-        },
-        {
-            "file": "framework.js",
-            "line": 89,
-            "description": "Will get the distance between this vector and another supplied vector",
-            "itemtype": "method",
-            "name": "Distance",
+            "name": "SimpleDraw",
             "params": [
                 {
-                    "name": "vector",
-                    "description": "",
-                    "type": "$Vector2"
+                    "name": "canvas",
+                    "description": "The canvas object to draw this image on",
+                    "type": "$Canvas"
                 }
             ],
-            "return": {
-                "description": "Float The distance between this $Vector2 and the supplied $Vector2"
-            },
-            "class": "$Vector2"
+            "class": "$Image"
         },
         {
-            "file": "framework.js",
-            "line": 99,
-            "description": "Will subtract this vector from another vector",
-            "itemtype": "method",
-            "name": "Difference",
+            "file": "input.js",
+            "line": 113,
+            "description": "Fired when a key has been pressed",
+            "itemtype": "event",
+            "name": "keyDown",
             "params": [
                 {
-                    "name": "vector",
-                    "description": "",
-                    "type": "$vector2"
+                    "name": "keycode",
+                    "description": "The code of the key that was pressed",
+                    "type": "Int"
                 }
             ],
-            "return": {
-                "description": "$Vector2 The result of this vector subtracted by a supplied vector (in that order)"
-            },
-            "class": "$Vector2"
+            "class": "$Input"
         },
         {
-            "file": "framework.js",
-            "line": 109,
-            "description": "Will add this vector from another vector",
-            "itemtype": "method",
-            "name": "Sum",
+            "file": "input.js",
+            "line": 119,
+            "description": "Fired when a key has been released",
+            "itemtype": "event",
+            "name": "keyUp",
             "params": [
                 {
-                    "name": "vector",
-                    "description": "",
-                    "type": "$vector2"
+                    "name": "keycode",
+                    "description": "The code of the key that was pressed",
+                    "type": "Int"
                 }
             ],
-            "return": {
-                "description": "$Vector2 The result of this vector added by a supplied vector"
-            },
-            "class": "$Vector2"
+            "class": "$Input"
         },
         {
-            "file": "framework.js",
-            "line": 129,
-            "description": "The red of this color which is between 0 and 255 (inclusinve)",
-            "itemtype": "property",
-            "name": "r",
-            "type": "Int",
-            "class": "$Color"
+            "file": "input.js",
+            "line": 125,
+            "description": "Fired when the mouse button has been pressed",
+            "itemtype": "event",
+            "name": "mouseDown",
+            "class": "$Input"
         },
         {
-            "file": "framework.js",
+            "file": "input.js",
+            "line": 130,
+            "description": "Fired when the mouse button has been released",
+            "itemtype": "event",
+            "name": "mouseUp",
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
             "line": 135,
-            "description": "The green of this color which is between 0 and 255 (inclusinve)",
-            "itemtype": "property",
-            "name": "g",
-            "type": "Int",
-            "class": "$Color"
-        },
-        {
-            "file": "framework.js",
-            "line": 141,
-            "description": "The blue of this color which is between 0 and 255 (inclusinve)",
-            "itemtype": "property",
-            "name": "b",
-            "type": "Int",
-            "class": "$Color"
-        },
-        {
-            "file": "framework.js",
-            "line": 147,
-            "description": "The alpha of this color which is between 0.0 and 1.0 (inclusinve)",
-            "itemtype": "property",
-            "name": "a",
-            "type": "Float",
-            "class": "$Color"
-        },
-        {
-            "file": "framework.js",
-            "line": 154,
-            "description": "Converts this color object to a canvas readable color string \"rgba(r,g,b,a)\" or \"rgb(r,g,b)\"",
-            "itemtype": "method",
-            "name": "ToStandard",
+            "description": "Fired when a key has changed position",
+            "itemtype": "event",
+            "name": "mouseMove",
             "params": [
                 {
-                    "name": "noAlpha",
-                    "description": "Set to false if alpha should not be included \"rgb(r,g,b)\"",
-                    "type": "Bool",
-                    "optional": true,
-                    "optdefault": "true"
+                    "name": "x",
+                    "description": "The x position of the mouse after the update",
+                    "type": "Int"
+                },
+                {
+                    "name": "y",
+                    "description": "The y position of the mouse after the update",
+                    "type": "Int"
+                }
+            ],
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 361,
+            "description": "Checks to see if the passed keyname matches a key that is currently being held down",
+            "itemtype": "method",
+            "name": "KeyDown",
+            "params": [
+                {
+                    "name": "keyname",
+                    "description": "The name of the key to check",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "String The canvas readable color string"
+                "description": "Literal True if the letter is currently held down"
             },
-            "class": "$Color"
+            "class": "$Input"
         },
         {
-            "file": "framework.js",
-            "line": 178,
+            "file": "input.js",
+            "line": 371,
+            "description": "Checks to see if the passed keyname matches a key that is currently released",
+            "itemtype": "method",
+            "name": "KeyUp",
+            "params": [
+                {
+                    "name": "keyname",
+                    "description": "The name of the key to check",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Literal True if the letter is currently released"
+            },
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 381,
+            "description": "Checks to see if the mouse button is currently being held down",
+            "itemtype": "method",
+            "name": "MouseDown",
+            "return": {
+                "description": "Literal True if the mouse button is currently held down"
+            },
+            "class": "$Input"
+        },
+        {
+            "file": "input.js",
+            "line": 390,
+            "description": "Checks to see if the mouse button is currently released",
+            "itemtype": "method",
+            "name": "MouseDown",
+            "return": {
+                "description": "Literal True if the mouse button is currently released"
+            },
+            "class": "$Input"
+        },
+        {
+            "file": "rectangle.js",
+            "line": 11,
             "description": "The x position of the $Rectangle",
             "itemtype": "property",
             "name": "x",
@@ -893,8 +1029,8 @@
             "class": "$Rectangle"
         },
         {
-            "file": "framework.js",
-            "line": 184,
+            "file": "rectangle.js",
+            "line": 17,
             "description": "The y position of the $Rectangle",
             "itemtype": "property",
             "name": "y",
@@ -902,8 +1038,8 @@
             "class": "$Rectangle"
         },
         {
-            "file": "framework.js",
-            "line": 190,
+            "file": "rectangle.js",
+            "line": 23,
             "description": "The width of the $Rectangle",
             "itemtype": "property",
             "name": "width",
@@ -911,8 +1047,8 @@
             "class": "$Rectangle"
         },
         {
-            "file": "framework.js",
-            "line": 196,
+            "file": "rectangle.js",
+            "line": 29,
             "description": "The height of the $Rectangle",
             "itemtype": "property",
             "name": "height",
@@ -920,8 +1056,8 @@
             "class": "$Rectangle"
         },
         {
-            "file": "framework.js",
-            "line": 202,
+            "file": "rectangle.js",
+            "line": 35,
             "description": "The color of the $Rectangle to be used for debug drawing",
             "itemtype": "property",
             "name": "color",
@@ -929,8 +1065,8 @@
             "class": "$Rectangle"
         },
         {
-            "file": "framework.js",
-            "line": 209,
+            "file": "rectangle.js",
+            "line": 42,
             "description": "Checks to see if a point in 2D space (x and y) are within this $Rectangle's bounds",
             "itemtype": "method",
             "name": "Contains",
@@ -952,8 +1088,8 @@
             "class": "$Rectangle"
         },
         {
-            "file": "framework.js",
-            "line": 221,
+            "file": "rectangle.js",
+            "line": 54,
             "description": "Check to see if this $Rectangle is intersecting another $Rectangle",
             "itemtype": "method",
             "name": "Intersects",
@@ -970,147 +1106,23 @@
             "class": "$Rectangle"
         },
         {
-            "file": "framework.js",
-            "line": 246,
-            "description": "Debug draw the rectangle on the canvas with the supplied color\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main canvas object",
+            "file": "rectangle.js",
+            "line": 79,
+            "description": "Debug draw the rectangle on the Canvas with the supplied color\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main Canvas object",
             "itemtype": "method",
             "name": "Draw",
             "params": [
                 {
-                    "name": "canvas",
-                    "description": "The canvas to be drawn on",
+                    "name": "Canvas",
+                    "description": "The Canvas to be drawn on",
                     "type": "$Canvas"
                 }
             ],
             "class": "$Rectangle"
         },
         {
-            "file": "input.js",
-            "line": 107,
-            "description": "Fired when a key has been pressed",
-            "itemtype": "event",
-            "name": "keyDown",
-            "params": [
-                {
-                    "name": "keycode",
-                    "description": "The code of the key that was pressed",
-                    "type": "Int"
-                }
-            ],
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 113,
-            "description": "Fired when a key has been released",
-            "itemtype": "event",
-            "name": "keyUp",
-            "params": [
-                {
-                    "name": "keycode",
-                    "description": "The code of the key that was pressed",
-                    "type": "Int"
-                }
-            ],
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 119,
-            "description": "Fired when the mouse button has been pressed",
-            "itemtype": "event",
-            "name": "mouseDown",
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 124,
-            "description": "Fired when the mouse button has been released",
-            "itemtype": "event",
-            "name": "mouseUp",
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 129,
-            "description": "Fired when a key has changed position",
-            "itemtype": "event",
-            "name": "mouseMove",
-            "params": [
-                {
-                    "name": "x",
-                    "description": "The x position of the mouse after the update",
-                    "type": "Int"
-                },
-                {
-                    "name": "y",
-                    "description": "The y position of the mouse after the update",
-                    "type": "Int"
-                }
-            ],
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 285,
-            "description": "Checks to see if the passed keyname matches a key that is currently being held down",
-            "itemtype": "method",
-            "name": "KeyDown",
-            "params": [
-                {
-                    "name": "keyname",
-                    "description": "The name of the key to check",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "Literal True if the letter is currently held down"
-            },
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 295,
-            "description": "Checks to see if the passed keyname matches a key that is currently released",
-            "itemtype": "method",
-            "name": "KeyUp",
-            "params": [
-                {
-                    "name": "keyname",
-                    "description": "The name of the key to check",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "Literal True if the letter is currently released"
-            },
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 305,
-            "description": "Checks to see if the mouse button is currently being held down",
-            "itemtype": "method",
-            "name": "MouseDown",
-            "return": {
-                "description": "Literal True if the mouse button is currently held down"
-            },
-            "class": "$Input"
-        },
-        {
-            "file": "input.js",
-            "line": 314,
-            "description": "Checks to see if the mouse button is currently released",
-            "itemtype": "method",
-            "name": "MouseDown",
-            "return": {
-                "description": "Literal True if the mouse button is currently released"
-            },
-            "class": "$Input"
-        },
-        {
             "file": "spriteSheet.js",
-            "line": 16,
+            "line": 17,
             "description": "The frames per second for this animation",
             "itemtype": "property",
             "name": "fps",
@@ -1119,7 +1131,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 22,
+            "line": 23,
             "description": "Used to count the elapsed time for frames",
             "itemtype": "property",
             "name": "fpsCounter",
@@ -1130,7 +1142,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 29,
+            "line": 30,
             "description": "The width of each sprite in the sprite sheet",
             "itemtype": "property",
             "name": "width",
@@ -1139,7 +1151,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 35,
+            "line": 36,
             "description": "The height of each sprite in the sprite sheet",
             "itemtype": "property",
             "name": "height",
@@ -1148,7 +1160,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 41,
+            "line": 42,
             "description": "The starting row on the spritesheet for the animation",
             "itemtype": "property",
             "name": "rowStart",
@@ -1159,7 +1171,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 48,
+            "line": 49,
             "description": "The starting column on the spritesheet for the animation",
             "itemtype": "property",
             "name": "columnStart",
@@ -1170,7 +1182,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 55,
+            "line": 56,
             "description": "The current row that the animation is on",
             "itemtype": "property",
             "name": "row",
@@ -1181,7 +1193,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 62,
+            "line": 63,
             "description": "The current column that the animation is on",
             "itemtype": "property",
             "name": "column",
@@ -1192,7 +1204,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 69,
+            "line": 70,
             "description": "The total count of rows for the animation",
             "itemtype": "property",
             "name": "rows",
@@ -1203,7 +1215,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 76,
+            "line": 77,
             "description": "The total amount of columns for the animation",
             "itemtype": "property",
             "name": "columns",
@@ -1214,7 +1226,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 83,
+            "line": 84,
             "description": "The amount of frames for this particular segment of the animation",
             "itemtype": "property",
             "name": "limit",
@@ -1225,7 +1237,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 90,
+            "line": 91,
             "description": "The current counter to check against the limit",
             "itemtype": "property",
             "name": "limitCount",
@@ -1236,8 +1248,8 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 97,
-            "description": "The position on the canvas that this animation is at",
+            "line": 98,
+            "description": "The position on the Canvas that this animation is at",
             "itemtype": "property",
             "name": "position",
             "type": "$Vector2",
@@ -1245,7 +1257,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 103,
+            "line": 104,
             "description": "The current cropping position for the image",
             "itemtype": "property",
             "name": "cropPosition",
@@ -1256,7 +1268,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 110,
+            "line": 111,
             "description": "The image to be used for the animation",
             "itemtype": "property",
             "name": "image",
@@ -1267,7 +1279,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 122,
+            "line": 123,
             "description": "Sets the frame limit for the spritesheet animation",
             "itemtype": "method",
             "name": "SetLimit",
@@ -1282,7 +1294,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 131,
+            "line": 132,
             "description": "Set the current and start row for the spritesheet animation",
             "itemtype": "method",
             "name": "SetRow",
@@ -1297,7 +1309,7 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 144,
+            "line": 145,
             "description": "Set the current and start column for the spritesheet animation",
             "itemtype": "method",
             "name": "SetColumn",
@@ -1312,35 +1324,178 @@
         },
         {
             "file": "spriteSheet.js",
-            "line": 157,
-            "description": "This will draw the individual sprite on the canvas\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main canvas object",
+            "line": 158,
+            "description": "This will draw the individual sprite on the Canvas\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main Canvas object",
             "itemtype": "method",
             "name": "Draw",
             "params": [
                 {
-                    "name": "canvas",
-                    "description": "The canvas element to be drawn on",
+                    "name": "Canvas",
+                    "description": "The Canvas element to be drawn on",
                     "type": "$Canvas"
                 }
             ],
             "class": "$SpriteSheet"
         },
         {
-            "file": "web2d.js",
-            "line": 4,
-            "description": "Description",
+            "file": "vector2.js",
+            "line": 8,
+            "description": "The x dimension of this vector",
+            "itemtype": "property",
+            "name": "x",
+            "type": "Int",
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 14,
+            "description": "The y dimension of this vector",
+            "itemtype": "property",
+            "name": "y",
+            "type": "Int",
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 21,
+            "description": "Copys the x and y dimension of a $Vector2 to this one",
             "itemtype": "method",
-            "name": "LoadModule",
+            "name": "Set",
             "params": [
                 {
-                    "name": "moduleFile",
-                    "description": ""
+                    "name": "vector",
+                    "description": "The $Vector2 to have its x and y dimensions copied",
+                    "type": "$Vector2"
+                }
+            ],
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 34,
+            "description": "Transposes this vector by another vector by shifting (adding)",
+            "itemtype": "method",
+            "name": "Move",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "The vector to be added to this vector",
+                    "type": "$Vector2"
+                }
+            ],
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 44,
+            "description": "Get's the magnitude (pythagorean theorem) of this vector (the length of the hypotenuse of the right triangle produced by this vector)",
+            "itemtype": "method",
+            "name": "Magnitude",
+            "return": {
+                "description": "Float The length of the hypotenuse"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 53,
+            "description": "Get's the dot product of this vector and another",
+            "itemtype": "method",
+            "name": "Dot",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "The vector to be multiplied with this vector",
+                    "type": "$Vector2"
                 }
             ],
             "return": {
-                "description": ""
+                "description": "Float The result of dot product (vector multiplication)"
             },
-            "class": "$Window"
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 63,
+            "description": "Get's the cross product of this vector and another\nNote: The cross product is often done with a 3 dimensional vector, so in this case it will actually return a scalar",
+            "itemtype": "method",
+            "name": "Cross",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "The vector to be multiplied with this vector",
+                    "type": "$Vector2"
+                }
+            ],
+            "return": {
+                "description": "Float The result of cross product (vector multiplication)"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 74,
+            "description": "This will return a new normalized $Vector2 of this vector",
+            "itemtype": "method",
+            "name": "Normalized",
+            "return": {
+                "description": "$Vector2 The normalized $Vector2"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 89,
+            "description": "Will get the distance between this vector and another supplied vector",
+            "itemtype": "method",
+            "name": "Distance",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "$Vector2"
+                }
+            ],
+            "return": {
+                "description": "Float The distance between this $Vector2 and the supplied $Vector2"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 99,
+            "description": "Will subtract this vector from another vector",
+            "itemtype": "method",
+            "name": "Difference",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "$vector2"
+                }
+            ],
+            "return": {
+                "description": "$Vector2 The result of this vector subtracted by a supplied vector (in that order)"
+            },
+            "class": "$Vector2"
+        },
+        {
+            "file": "vector2.js",
+            "line": 109,
+            "description": "Will add this vector from another vector",
+            "itemtype": "method",
+            "name": "Sum",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "$vector2"
+                }
+            ],
+            "return": {
+                "description": "$Vector2 The result of this vector added by a supplied vector"
+            },
+            "class": "$Vector2"
         },
         {
             "file": "window.js",

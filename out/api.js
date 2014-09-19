@@ -5,6 +5,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "$Color",
         "$Document",
         "$Event",
+        "$Image",
         "$Input",
         "$Keys",
         "$Rectangle",
