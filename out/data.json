@@ -528,6 +528,30 @@
         {
             "file": "canvas.js",
             "line": 34,
+            "description": "The current scale of the canvas on the x and y; 1 is default",
+            "itemtype": "property",
+            "name": "scale",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 39,
+            "description": "The current width of the canvas (this works well with scaling)",
+            "itemtype": "property",
+            "name": "width",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 44,
+            "description": "The current height of the canvas (this works well with scaling)",
+            "itemtype": "property",
+            "name": "height",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 50,
             "description": "Fires at the beginning this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function before the <a href=\"$Canvas.html#event_Draw\">drawing</a> event fires",
             "itemtype": "event",
             "name": "drawing",
@@ -542,7 +566,7 @@
         },
         {
             "file": "canvas.js",
-            "line": 41,
+            "line": 57,
             "description": "Fires whenever this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function is called",
             "itemtype": "event",
             "name": "drawing",
@@ -557,7 +581,7 @@
         },
         {
             "file": "canvas.js",
-            "line": 48,
+            "line": 64,
             "description": "Calls all of the events registered to <a href=\"$Canvas.html#event_drawing\">drawing</a> event on this Canvas object",
             "itemtype": "method",
             "name": "Draw",
@@ -565,7 +589,15 @@
         },
         {
             "file": "canvas.js",
-            "line": 61,
+            "line": 73,
+            "description": "This will scale the canvas up without resizing the canvas. It only scales up everything that is being drawn (1, 1) is default (2, 2) would be 2x the size of default",
+            "itemtype": "method",
+            "name": "Scale",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 91,
             "description": "Registers the Canvas to be used for the main drawing",
             "itemtype": "method",
             "name": "registerCanvas",

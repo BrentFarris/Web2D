@@ -32,6 +32,22 @@ var $Canvas = function(elm, widthPercent, heightPercent) {
 	this.elm.style.height	= this.elm.height + "px";
 	
 	/**
+	The current scale of the canvas on the x and y; 1 is default
+	@property scale
+	*/
+	this.scale = new $Vector2(1, 1);
+	/**
+	The current width of the canvas (this works well with scaling)
+	@property width
+	*/
+	this.width = this.elm.width;
+	/**
+	The current height of the canvas (this works well with scaling)
+	@property height
+	*/
+	this.height = this.elm.height;
+	
+	/**
 	Fires at the beginning this objects <a href="$Canvas.html#method_Draw">Draw</a> function before the <a href="$Canvas.html#event_Draw">drawing</a> event fires
 	@event drawing
 	@param {$Canvas} Canvas 
@@ -52,6 +68,20 @@ var $Canvas = function(elm, widthPercent, heightPercent) {
 	this.Draw = function() {
 		this.updating.Fire();
 		this.drawing.Fire([this]);
+	};
+	
+	/**
+	This will scale the canvas up without resizing the canvas. It only scales up everything that is being drawn (1, 1) is default (2, 2) would be 2x the size of default
+	@method Scale
+	*/
+	this.Scale = function(x, y) {
+		this.context.scale(x, y);
+		
+		this.width = this.width * (1 / x);
+		this.height = this.height * (1 / y);
+		
+		this.scale.x = x;
+		this.scale.y = y;
 	};
 };
 

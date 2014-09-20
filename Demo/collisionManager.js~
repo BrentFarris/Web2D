@@ -11,14 +11,14 @@ var CollisionManager = function() {
 		}
 	};
 	
-	this.CheckCollision = function(other) {
+	this.CheckCollision = function(other, evt, otherParent) {
 		for (var i = 0; i < this.rectangles.length; i++) {
 			// TODO:  Check only ones within range
-			if (other.Intersects(this.rectangles[i]))
-				return true;
+			if (other.Intersects(this.rectangles[i])) {
+				console.log(other, this.rectangles[i]);
+				evt(otherParent, this.rectangles[i]);
+			}
 		}
-		
-		return false;
 	};
 };
 

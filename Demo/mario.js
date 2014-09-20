@@ -17,6 +17,9 @@ Mario = function() {
 	this.JUMP_MAX = 5;
 	this.jumpVelocity = 0;
 	
+	this.jumpAudio = new $Audio("audio/jump-small.wav");
+	this.dieAudio = new $Audio("audio/die.wav");
+	
 	this.SetPosition = function(x, y, mod) {
 		if (mod == null || !mod)
 		{
@@ -35,23 +38,48 @@ Mario = function() {
 	};
 	
 	this.InputKeyDown = function(keycode) {
-		if (keycode == Keys.A) {
-			this.animation.SetRow(2);
-		} else if (keycode == Keys.D) {
-			this.animation.SetRow(0);
-		} else if (keycode == Keys.W) {
-			this.Jump();
+		if (!this.jumping) {
+			if (keycode == Keys.A) {
+				this.animation.SetRow(2);
+			} else if (keycode == Keys.D) {
+				this.animation.SetRow(0);
+			} else if (keycode == Keys.W) {
+				this.Jump();
+			}
 		}
 	};
 	
 	this.Floored = function(rect) {
-		this.jumping = false;
 		this.jumpAvailable = true;
 		this.velocity.y = 0;
 		
-		if (rect != null) {
-			this.rect.y = rect.y - this.rect.height;
+		this.rect.y = rect.y - this.rect.height;
+		
+		if (this.jumping) {
+			this.animation.SetColumn(0);
+			this.animation.SetRow(4);
+			if (this.lookinRight) {
+				this.animation.SetRow(0);
+			} else {
+				this.animation.SetRow(2);
+			}
+		
+			this.animation.SetLimit(8);
 		}
+		
+		this.jumping = false;
+	};
+	
+	this.Ceiling = function(rect) {
+		this.rect.y -= this.velocity.y;
+		this.velocity.y = 0;
+	};
+	
+	this.MoveBack = function(other) {
+		if (other.x > this.rect.x)
+			this.rect.x = other.x - this.rect.width;
+		else if (other.x < this.rect.x)
+			this.rect.x = other.x + other.width;
 	};
 	
 	this.Update = function() {
@@ -72,9 +100,10 @@ Mario = function() {
 		this.rect.y -= this.velocity.y;
 		this.velocity.y -= this.gravity;
 		
-		if (this.rect.y + this.rect.height > Canvas.elm.height) {
-			this.rect.y = Canvas.elm.height - this.rect.height;
-			this.Floored();
+		if (this.rect.y >= Canvas.height) {
+			this.dieAudio.Play();
+			Canvas.updating.Remove(this.Update);
+			Canvas.drawing.Remove(this.animation.Draw);
 		}
 		
 		this.animation.position.Set(this.rect.x, this.rect.y);
@@ -84,8 +113,17 @@ Mario = function() {
 	};
 	
 	this.Jump = function() {
-		if (this.jumpAvailable)
-		{
+		if (this.jumpAvailable) {
+			this.animation.SetRow(4);
+			if (this.lookinRight) {
+				this.animation.SetColumn(0);
+			} else {
+				this.animation.SetColumn(1);
+			}
+			
+			this.animation.SetLimit(1);
+			
+			this.jumpAudio.Play();
 			this.velocity.y = this.JUMP_MAX;
 			this.jumping = true;
 		}
