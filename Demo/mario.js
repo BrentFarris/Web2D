@@ -100,6 +100,14 @@ Mario = function() {
 		this.rect.y -= this.velocity.y;
 		this.velocity.y -= this.gravity;
 		
+		if (this.rect.x < 0)
+			this.rect.x = 0;
+		
+		if (this.rect.x > Canvas.width * 0.5) {
+			camera.Move(-this.velocity.x, 0);
+			this.rect.x -= this.velocity.x;
+		}
+		
 		if (this.rect.y >= Canvas.height) {
 			this.dieAudio.Play();
 			Canvas.updating.Remove(this.Update);
@@ -108,11 +116,12 @@ Mario = function() {
 		
 		this.animation.position.Set(this.rect.x, this.rect.y);
 		
-		if (!this.moving)
+		if (!this.moving && !this.jumping)
 			this.animation.SetColumn(0);
 	};
 	
 	this.Jump = function() {
+		
 		if (this.jumpAvailable) {
 			this.animation.SetRow(4);
 			if (this.lookinRight) {
