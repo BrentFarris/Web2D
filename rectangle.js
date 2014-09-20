@@ -44,7 +44,7 @@ $Rectangle = function(x, y, w, h, color) {
 	@method Contains
 	@param {Int} x The x position to check if within this $Rectangle
 	@param {Int} y The y position to check if within this $Rectangle
-	@return 
+	@return Literal True if the x and y vector is within this rectangle
 	*/
 	this.Contains = function(x, y)
 	{

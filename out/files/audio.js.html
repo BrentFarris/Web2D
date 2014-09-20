@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>event.js</title>
+    <title>audio.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -106,57 +106,135 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: event.js</h1>
+                        <h1 class="file-heading">File: audio.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-The event class is responsible for registering multiple events to one function call much like C#&#x27;s &quot;event&quot; type
-@class $Event
+An object to manage a HTML5 Audio element
+@class $Audio
+@param elm {Audio|String} The audio clip to be managed or the string source of the audio clip
 @constructor
 */
-var $Event = function(test) {
+var $Audio = function(src) {
 	/**
-	The list of events to be fired when &quot;Fire&quot; is called
-	@property events
+	How many times this audio clip should loop until it should stop
+	@property loops
 	@private
 	*/
-	this.events = new Array();
+	this.loops = 0;
+	
+	if (typeof src == &quot;string&quot;) {
+		this.clip = new Audio();
+		this.clip.src = src;
+	} else
+		this.clip = src;
 	
 	/**
-	Registers events to this objects event array to be called
-	@method Register
-	@param {Function} evt The function to be called
-	@param {Object} [obj=window] The object that the function belongs to
+	Determines if this audio clip is currently playing
+	@method IsPlaying
+	@return Literal True if the audio clip is currently playing
 	*/
-	this.Register = function(evt, obj) {
-		this.events.push(new Array(evt, obj == null ? window : obj));
+	this.IsPlaying = function() {
+		return this.clip.ended;
 	};
 	
 	/**
-	Removes a specified function signature from the array
-	@method Remove
-	@param {Function} event
+	Plays this audio clip. If looping it will play it for the remaining loop count
+	@method Play
 	*/
-	this.Remove = function(event) {
-		for (var i = 0; i &lt; this.events.length; i++) {
-			if (this.events[i][0] == event) {
-				this.events.removeAt(i);
-				break;
-			}
+	this.Play = function() {
+		this.clip.play();
+	};
+	
+	/**
+	Pauses this audio clip and allows to continue it from this point if played again
+	@method Pause
+	*/
+	this.Pause = function() {
+		this.clip.pause();
+	};
+	
+	/**
+	This sets the current time of the audio clip to allow &quot;jumping&quot;
+	@method SetTime
+	@param {Int} The time that the audio clip should start at
+	*/
+	this.SetTime = function(time) {
+		this.clip.currentTime = time;
+	};
+	
+	/**
+	Sets the volume for this audio clip
+	@method SetVolume
+	*/
+	this.SetVolume = function(volume) {
+		if (volume &gt; 1)
+			this.clip.volume = volume * 0.01;
+		else
+			this.clip.volume = volume;
+	};
+	
+	/**
+	The function that is to be used as a callback only for when the audio clip has ended
+	@method EndLoopDecrement
+	@private
+	*/
+	this.EndLoopDecrement = function() {
+		if (this.loops &gt; 0)
+			this.loops--;
+		
+		if (this.loops &gt; 0)
+			this.Play();
+	};
+	
+	/**
+	Sets how many times the audio clip should loop when playing. If 0 is passed then it will loop forever, if -1 is passed then it will turn looping off, otherwise loops the specified amount
+	@method SetLoopCount
+	@param {Int} The amount of times this audio clip should loop
+	*/
+	this.SetLoopCount = function(repeats) {
+		if (repeats == 0)
+			this.clip.loop = true;
+		else if (repeats &lt; 0) {
+			this.clip.loop = false;
+			this.loops = 0;
 		}
+		else
+			this.loops = repeats;
 	};
 	
 	/**
-	Goes through all of the registered events and fires them off
-	@method Fire
-	@param {Array} args All of the arguments to be mapped to the events (functions)
+	Fired when the audio clip has finished
+	@event ended
 	*/
-	this.Fire = function (args) {
-		for (var i = 0; i &lt; this.events.length; i++)
-			this.events[i][0].apply(this.events[i][1], args);
-	};
+	this.ended = new $Event();
+	this.ended.Register(this.EndLoopDecrement, this);
 };
+
+/* TODO:  Add overrides for these default audio events if needed
+abort
+canplay
+canplaythroughdurationchange
+emptied
+ended
+error
+loadeddata
+loadedmetadata
+loadstart
+pause
+play
+playing
+progress
+ratechange
+seeked
+seeking
+stalled
+suspend
+timeupdate
+volumechange
+waiting
+*/
 
     </pre>
 </div>
