@@ -1,10 +1,12 @@
 // TODO:  Make this and mario derive from same class
 var Goomba = function() {
 	this.rect = new $Rectangle(0, 0, 16, 16);
-	this.animation = new $SpriteSheet(16, 16, 0, 0, 1, "images/goomba.png", 1, 1, 1);
+	this.animation = new $SpriteSheet(16, 16, 0, 0, 2, "images/goomba.png", 2, 2, 1);
 	
 	this.gravity = 0.298;
 	this.velocity = new $Vector2(-1, 0);
+	
+	this.dead = false;
 	
 	this.Floored = function(rect) {
 		this.jumpAvailable = true;
@@ -40,6 +42,10 @@ var Goomba = function() {
 		this.velocity.y -= this.gravity;
 		
 		this.animation.position.Set(this.rect.x, this.rect.y);
+	};
+	
+	this.Die = function() {
+		this.dead = true;
 	};
 	
 	Canvas.drawing.Register(this.animation.Draw, this.animation);

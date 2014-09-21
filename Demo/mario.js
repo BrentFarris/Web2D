@@ -14,11 +14,16 @@ Mario = function() {
 	
 	this.jumpAvailable = false;
 	this.jumping = true;
-	this.JUMP_MAX = 5;
+	this.JUMP_MAX = 7;
 	this.jumpVelocity = 0;
 	
 	this.jumpAudio = new $Audio("audio/jump-small.wav");
 	this.dieAudio = new $Audio("audio/die.wav");
+	this.stompAudio = new $Audio("audio/stomp.wav");
+	this.breakerAudio = new $Audio("audio/stage_clear.wav");
+	
+	this.dead = false;
+	this.enemyKillCount = 0;
 	
 	this.SetPosition = function(x, y, mod) {
 		if (mod == null || !mod)
@@ -38,6 +43,8 @@ Mario = function() {
 	};
 	
 	this.InputKeyDown = function(keycode) {
+		if (this.dead) return;
+		
 		if (!this.jumping) {
 			if (keycode == Keys.A) {
 				this.animation.SetRow(2);
@@ -71,7 +78,7 @@ Mario = function() {
 	};
 	
 	this.Ceiling = function(rect) {
-		this.rect.y -= this.velocity.y;
+		this.rect.y += this.velocity.y;
 		this.velocity.y = 0;
 	};
 	
@@ -82,23 +89,36 @@ Mario = function() {
 			this.rect.x = other.x + other.width;
 	};
 	
+	this.EnemyPounce = function() {
+		this.velocity.y = this.JUMP_MAX;
+		this.stompAudio.Play();
+		
+		this.enemyKillCount++;
+		
+		if (this.enemyKillCount == 10)
+			this.breakerAudio.Play();
+	};
+	
 	this.Update = function() {
-		if (Input.KeyDown("a")) {
-			this.velocity.x = -2;
-			this.moving = true;
-			this.lookinRight = false;
-		} else if (Input.KeyDown("d")) {
-			this.velocity.x = 2;
-			this.moving = true;
-			this.lookinRight = true;
-		} else {
-			this.velocity.x = 0;
-			this.moving = false;
+		if (!this.dead) {
+			if (Input.KeyDown("a")) {
+				this.velocity.x = -2;
+				this.moving = true;
+				this.lookinRight = false;
+			} else if (Input.KeyDown("d")) {
+				this.velocity.x = 2;
+				this.moving = true;
+				this.lookinRight = true;
+			} else {
+				this.velocity.x = 0;
+				this.moving = false;
+			}
 		}
+		
+		this.velocity.y -= this.gravity;
 		
 		this.rect.x += this.velocity.x;
 		this.rect.y -= this.velocity.y;
-		this.velocity.y -= this.gravity;
 		
 		if (this.rect.x < 0)
 			this.rect.x = 0;
@@ -109,19 +129,16 @@ Mario = function() {
 		}
 		
 		if (this.rect.y >= Canvas.height) {
-			this.dieAudio.Play();
-			Canvas.updating.Remove(this.Update);
-			Canvas.drawing.Remove(this.animation.Draw);
+			this.Die();
 		}
 		
 		this.animation.position.Set(this.rect.x, this.rect.y);
 		
-		if (!this.moving && !this.jumping)
+		if (!this.moving && !this.jumping && !this.dead)
 			this.animation.SetColumn(0);
 	};
 	
 	this.Jump = function() {
-		
 		if (this.jumpAvailable) {
 			this.animation.SetRow(4);
 			if (this.lookinRight) {
@@ -136,6 +153,28 @@ Mario = function() {
 			this.velocity.y = this.JUMP_MAX;
 			this.jumping = true;
 		}
+	};
+	
+	this.Die = function(animate) {
+		if (this.dead) return;
+		
+		this.dead = true;
+		this.dieAudio.Play();
+		
+		if (animate == null || animate == false)
+			this.Cleanup();
+		else {
+			this.animation.SetRow(4);
+			this.animation.SetColumn(2);
+			this.animation.SetLimit(1);
+			this.velocity.x = 0;
+			this.velocity.y = this.JUMP_MAX * 3;
+		}
+	};
+	
+	this.Cleanup = function() {
+		Canvas.updating.Remove(this.Update);
+		Canvas.drawing.Remove(this.animation.Draw);
 	};
 	
 	Input.keyDown.Register(this.InputKeyDown, this);
