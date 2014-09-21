@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/$Audio.html">$Audio</a></li>
+            
                 <li><a href="../classes/$Canvas.html">$Canvas</a></li>
             
                 <li><a href="../classes/$Color.html">$Color</a></li>
@@ -236,7 +238,7 @@ var $SpriteSheet = function(width, height, row, column, limit, imgSrc, fps, colu
 	@param {Int} limit How many frames the spritesheet animation should be limited to
 	*/
 	this.SetLimit = function(limit) {
-		this.limit = l - 1;
+		this.limit = limit - 1;
 	};
 	
 	/**

@@ -44,7 +44,7 @@ $Rectangle = function(x, y, w, h, color) {
 	@method Contains
 	@param {Int} x The x position to check if within this $Rectangle
 	@param {Int} y The y position to check if within this $Rectangle
-	@return 
+	@return Literal True if the x and y vector is within this rectangle
 	*/
 	this.Contains = function(x, y)
 	{
@@ -55,24 +55,25 @@ $Rectangle = function(x, y, w, h, color) {
 	Check to see if this $Rectangle is intersecting another $Rectangle
 	@method Intersects
 	@param {$Rectangle} other The other rectangle to check against
+	@param {$Vector2} [offset=null] The offset for this rectangle (usually a camera position)
 	@return Literal True if intersection other rectangle
 	*/
-	this.Intersects = function(other) {
-		var offset = 0;
-		if (other.radius != null)
-			offset = other.radius;
+	this.Intersects = function(other, offset) {
+		if (offset == null)
+			offset = new $Vector2(0, 0);
 		
-		if (this.Contains(other.x - offset, other.y - offset) || this.Contains(other.x + other.width - offset, other.y - offset) ||
-			this.Contains(other.x - offset, other.y + other.height - offset) || this.Contains(other.x + other.width - offset, other.y + other.height - offset))
+		if (this.Contains(other.x + offset.x, other.y + offset.y) || this.Contains(other.x + other.width + offset.x, other.y + offset.y) ||
+			this.Contains(other.x + offset.x, other.y + other.height + offset.y) || this.Contains(other.x + other.width + offset.x, other.y + other.height + offset.y))
 		{
 			return true;
 		}
-		else if (other.Contains(this.x - offset, this.y - offset) || other.Contains(this.x + this.width - offset, this.y - offset) ||
-			other.Contains(this.x - offset, this.y + this.height - offset) || other.Contains(this.x + this.width - offset, this.y + this.height - offset))
+		else if (other.Contains(this.x, this.y) || other.Contains(this.x + this.width, this.y) ||
+			other.Contains(this.x, this.y + this.height) || other.Contains(this.x + this.width, this.y + this.height))
 		{
 			return true;
 		}
 		
+		console.log(offset);
 		return false;
 	};
 	

@@ -10,6 +10,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "audio.js": {
+            "name": "audio.js",
+            "modules": {},
+            "classes": {
+                "$Audio": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "canvas.js": {
             "name": "canvas.js",
             "modules": {},
@@ -115,6 +124,26 @@
             "file": "arrayExtensions.js",
             "line": 1,
             "description": "Extension methods to the base array class"
+        },
+        "$Audio": {
+            "name": "$Audio",
+            "shortname": "$Audio",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "audio.js",
+            "line": 1,
+            "description": "An object to manage a HTML5 Audio element",
+            "params": [
+                {
+                    "name": "elm",
+                    "description": "The audio clip to be managed or the string source of the audio clip",
+                    "type": "Audio|String"
+                }
+            ],
+            "is_constructor": 1
         },
         "$Canvas": {
             "name": "$Canvas",
@@ -508,6 +537,99 @@
             "class": "Array"
         },
         {
+            "file": "audio.js",
+            "line": 8,
+            "description": "How many times this audio clip should loop until it should stop",
+            "itemtype": "property",
+            "name": "loops",
+            "access": "private",
+            "tagname": "",
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 21,
+            "description": "Determines if this audio clip is currently playing",
+            "itemtype": "method",
+            "name": "IsPlaying",
+            "return": {
+                "description": "Literal True if the audio clip is currently playing"
+            },
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 30,
+            "description": "Plays this audio clip. If looping it will play it for the remaining loop count",
+            "itemtype": "method",
+            "name": "Play",
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 38,
+            "description": "Pauses this audio clip and allows to continue it from this point if played again",
+            "itemtype": "method",
+            "name": "Pause",
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 46,
+            "description": "This sets the current time of the audio clip to allow \"jumping\"",
+            "itemtype": "method",
+            "name": "SetTime",
+            "params": [
+                {
+                    "name": "The",
+                    "description": "time that the audio clip should start at",
+                    "type": "Int"
+                }
+            ],
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 55,
+            "description": "Sets the volume for this audio clip",
+            "itemtype": "method",
+            "name": "SetVolume",
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 66,
+            "description": "The function that is to be used as a callback only for when the audio clip has ended",
+            "itemtype": "method",
+            "name": "EndLoopDecrement",
+            "access": "private",
+            "tagname": "",
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 79,
+            "description": "Sets how many times the audio clip should loop when playing. If 0 is passed then it will loop forever, if -1 is passed then it will turn looping off, otherwise loops the specified amount",
+            "itemtype": "method",
+            "name": "SetLoopCount",
+            "params": [
+                {
+                    "name": "The",
+                    "description": "amount of times this audio clip should loop",
+                    "type": "Int"
+                }
+            ],
+            "class": "$Audio"
+        },
+        {
+            "file": "audio.js",
+            "line": 95,
+            "description": "Fired when the audio clip has finished",
+            "itemtype": "event",
+            "name": "ended",
+            "class": "$Audio"
+        },
+        {
             "file": "canvas.js",
             "line": 13,
             "description": "This is the actual Canvas element in the document",
@@ -528,6 +650,30 @@
         {
             "file": "canvas.js",
             "line": 34,
+            "description": "The current scale of the canvas on the x and y; 1 is default",
+            "itemtype": "property",
+            "name": "scale",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 39,
+            "description": "The current width of the canvas (this works well with scaling)",
+            "itemtype": "property",
+            "name": "width",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 44,
+            "description": "The current height of the canvas (this works well with scaling)",
+            "itemtype": "property",
+            "name": "height",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 50,
             "description": "Fires at the beginning this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function before the <a href=\"$Canvas.html#event_Draw\">drawing</a> event fires",
             "itemtype": "event",
             "name": "drawing",
@@ -542,7 +688,7 @@
         },
         {
             "file": "canvas.js",
-            "line": 41,
+            "line": 57,
             "description": "Fires whenever this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function is called",
             "itemtype": "event",
             "name": "drawing",
@@ -557,7 +703,7 @@
         },
         {
             "file": "canvas.js",
-            "line": 48,
+            "line": 64,
             "description": "Calls all of the events registered to <a href=\"$Canvas.html#event_drawing\">drawing</a> event on this Canvas object",
             "itemtype": "method",
             "name": "Draw",
@@ -565,7 +711,15 @@
         },
         {
             "file": "canvas.js",
-            "line": 61,
+            "line": 73,
+            "description": "This will scale the canvas up without resizing the canvas. It only scales up everything that is being drawn (1, 1) is default (2, 2) would be 2x the size of default",
+            "itemtype": "method",
+            "name": "Scale",
+            "class": "$Canvas"
+        },
+        {
+            "file": "canvas.js",
+            "line": 91,
             "description": "Registers the Canvas to be used for the main drawing",
             "itemtype": "method",
             "name": "registerCanvas",
@@ -1083,7 +1237,7 @@
                 }
             ],
             "return": {
-                "description": ""
+                "description": "Literal True if the x and y vector is within this rectangle"
             },
             "class": "$Rectangle"
         },
