@@ -14,7 +14,7 @@ Mario = function() {
 	
 	this.jumpAvailable = false;
 	this.jumping = true;
-	this.JUMP_MAX = 7;
+	this.JUMP_MAX = 6;
 	this.jumpVelocity = 0;
 	
 	this.jumpAudio = new $Audio("audio/jump-small.wav");
@@ -78,15 +78,12 @@ Mario = function() {
 	};
 	
 	this.Ceiling = function(rect) {
-		this.rect.y += this.velocity.y;
+		this.rect.y = rect.y + rect.height + 2;
 		this.velocity.y = 0;
 	};
 	
 	this.MoveBack = function(other) {
-		if (other.x > this.rect.x)
-			this.rect.x = other.x - this.rect.width;
-		else if (other.x < this.rect.x)
-			this.rect.x = other.x + other.width;
+		this.rect.x -= this.velocity.x;
 	};
 	
 	this.EnemyPounce = function() {
@@ -168,7 +165,7 @@ Mario = function() {
 			this.animation.SetColumn(2);
 			this.animation.SetLimit(1);
 			this.velocity.x = 0;
-			this.velocity.y = this.JUMP_MAX * 3;
+			this.velocity.y = this.JUMP_MAX;
 		}
 	};
 	
