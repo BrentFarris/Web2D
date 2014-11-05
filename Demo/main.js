@@ -5,7 +5,7 @@ var camera = new Camera();
 var mario = new Mario();
 var goombas = new Array();
 
-for (var i = 0; i < 10; i++) {
+for (var i = 0; i < 0; i++) {
 	var goomba = new Goomba();
 	goomba.rect.x = 500 + i * 30;
 	goombas.push(goomba);
@@ -82,7 +82,7 @@ function CheckCollision() {
 				mario.Floored(hit);
 			else if (mario.rect.y + 4 > hit.y + hit.height)
 				mario.Ceiling(hit);
-			else if (mario.rect.y + mario.rect.height - 2 > hit.y && mario.rect.y < hit.y + hit.height + 2)
+			else if (mario.rect.y + mario.rect.height - 4 > hit.y && mario.rect.y < hit.y + hit.height + 2)
 				mario.MoveBack(hit);
 		}, mario);
 		
