@@ -1,6 +1,9 @@
 var $Button = function(rect, label, callback) {
 	this.init(rect);
 	
+	this.strokeWidth = 1;
+	this.hoverPointer = "pointer";
+	
 	if (label != null) {
 		this.label = label;
 	}
@@ -18,6 +21,7 @@ var $Button = function(rect, label, callback) {
 	
 	this.Draw = function(canvas) {
 		this.label.Draw(canvas);
+		canvas.context.lineWidth = this.strokeWidth;
 		canvas.context.strokeRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
 	};
 };

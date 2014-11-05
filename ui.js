@@ -3,6 +3,7 @@ var $UI = function() {
 	this.onClick = new $Event();
 	this.onMouseOver = new $Event();
 	this.onMouseOut = new $Event();
+	this.hoverPointer = "auto";
 	
 	this.clicking = false;
 	this.InputMouseDown = function() {
@@ -31,11 +32,17 @@ var $UI = function() {
 			if (this.isHovering) {
 				this.isHovering = false;
 				this.onMouseOut.Fire();
+				if (this.hoverPointer != "auto") {
+					Canvas.elm.style.cursor = "auto";
+				}
 			}
 		} else {
 			if (!this.isHovering) {
 				this.isHovering = true;
 				this.onMouseOver.Fire();
+				if (this.hoverPointer != "auto") {
+					Canvas.elm.style.cursor = this.hoverPointer;
+				}
 			}
 		}
 	};
