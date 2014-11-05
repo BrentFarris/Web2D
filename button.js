@@ -51,6 +51,10 @@ var $Button = function(rect, label, callback) {
 	@param {$Canvas} Canvas The Canvas to be drawn on
 	*/
 	this.Draw = function(canvas) {
+		if (!this.enabled) {
+			return;
+		}
+		
 		this.label.Draw(canvas);
 		if (this.strokeWidth > 0) {
 			canvas.context.lineWidth = this.strokeWidth;

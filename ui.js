@@ -5,6 +5,13 @@ The base class for all UI elements
 */
 var $UI = function() {
 	/**
+	Used to change how the object displays and acts. If false then events will not fire for this ui element
+	@property enabled
+	@protected
+	*/
+	this.enabled = true;
+	
+	/**
 	The base rectangle for this UI element
 	@property rect
 	*/
@@ -29,6 +36,18 @@ var $UI = function() {
 	this.onMouseOut = new $Event();
 	
 	/**
+	Fires when the mouse just leaves the ui element
+	@event onEnable
+	*/
+	this.onEnable = new $Event();
+	
+	/**
+	Fires when the mouse just leaves the ui element
+	@event onDisable
+	*/
+	this.onDisable = new $Event();
+	
+	/**
 	The cursor to use on hover of this ui element
 	@property hoverPointer
 	@default "auto"
@@ -42,10 +61,38 @@ var $UI = function() {
 	this.clicking = false;
 	
 	/**
+	Makes this UI element behave as normal (events working)
+	@method Enable
+	*/
+	this.Enable = function() {
+		if (!this.enabled) {
+			this.onEnable.Fire();
+		}
+		
+		this.enabled = true;
+	};
+	
+	/**
+	Makes this UI element behave as if it wasn't there (events not working)
+	@method Disable
+	*/
+	this.Disable = function() {
+		if (this.enabled) {
+			this.onDisable.Fire();
+		}
+		
+		this.enabled = false;
+	};
+	
+	/**
 	@method InputMouseDown
 	@private
 	*/
 	this.InputMouseDown = function() {
+		if (!this.enabled) {
+			return;
+		}
+		
 		if (!this.ContainsMouse()) {
 			return;
 		}
@@ -58,6 +105,10 @@ var $UI = function() {
 	@private
 	*/
 	this.InputMouseUp = function() {
+		if (!this.enabled) {
+			return;
+		}
+		
 		if (!this.ContainsMouse()) {
 			this.clicking = false;
 			return;
@@ -81,6 +132,10 @@ var $UI = function() {
 	@private
 	*/
 	this.MouseMoved = function(x, y) {
+		if (!this.enabled) {
+			return;
+		}
+		
 		if (!this.ContainsMouse(x, y)) {
 			if (this.isHovering) {
 				this.isHovering = false;

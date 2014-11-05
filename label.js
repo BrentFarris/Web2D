@@ -101,6 +101,10 @@ var $Label = function(rect, text, textWrap, autoSize) {
 	@param {$Canvas} Canvas The Canvas to be drawn on
 	*/
 	this.Draw = function(canvas) {
+		if (!this.enabled) {
+			return;
+		}
+		
 		canvas.context.textBaseline = this.textBaseline;
 		canvas.context.font = this.fontSize + "px " + this.font;
 		if (this.textWrap) {
@@ -111,22 +115,36 @@ var $Label = function(rect, text, textWrap, autoSize) {
 	};
 	
 	/**
+	@property typeWriterTimeout
+	@private
+	*/
+	this.typeWriterTimeout = null;
+	
+	/**
 	A cool effect to make it seem like the text is being typed out
 	@method SetText
 	@param {String} text The text that is to be written out
 	@param {Int} speed The time in milliseconds between each letter appearing
 	@param {Int} current The current index (char) of the string (just keep at 0)
 	*/
-	this.TypeWriter = function(text, speed, current) {
+	this.TypeWriter = function(text, speed, callback, current) {
 		this.SetText(text.substr(0, current));
 	
 		if (current++ == text.length) {
+			if (callback != null) {
+				callback();
+			}
+			
 			return;
 		}
 		
 		var that = this;
-		setTimeout(function() { that.TypeWriter(text, speed, current); }, speed);
+		this.typeWriterTimeout = setTimeout(function() { that.TypeWriter(text, speed, callback, current); }, speed);
 	};
+	
+	this.StopTypeWriter = function() {
+		clearTimeout(this.TypeWriter);
+	}
 };
 
 $Label.prototype = new $UI();
