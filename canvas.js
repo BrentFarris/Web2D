@@ -73,6 +73,8 @@ var $Canvas = function(elm, widthPercent, heightPercent) {
 	/**
 	This will scale the canvas up without resizing the canvas. It only scales up everything that is being drawn (1, 1) is default (2, 2) would be 2x the size of default
 	@method Scale
+	@param {Int} x The scale for the x-axis
+	@param {Int} y The scale for the y-axis
 	*/
 	this.Scale = function(x, y) {
 		this.context.scale(x, y);

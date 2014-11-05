@@ -1,20 +1,60 @@
+/**
+A label to have text rendered to the screen
+@class $Label
+@constructor
+@extends $UI
+*/
 var $Label = function(rect, text, textWrap, autoSize) {
 	this.init(rect);
 	
+	/**
+	The string message for this label to display
+	@property text
+	*/
 	this.text = text;
-	console.log(text);
+	
+	/**
+	The size of font to be used in pixels
+	@property fontSize
+	*/
 	this.fontSize = 20;
+	
+	/**
+	The font to be used for the text (normal HTML5 strings)
+	@property font
+	*/
 	this.font = "Arial, Helvetica, sans-serif";
+	
+	/**
+	Sets the baseline for the text (normal HTML5 strings)
+	@property textBaseline
+	*/
 	this.textBaseline = "top";
+	
+	/**
+	Wrap the text within the rectangle (requires <a href="$Label.html#property_autoSize">autoSize</a> to be false)
+	@property textWrap
+	*/
 	this.textWrap = textWrap != null ? textWrap : false;
 	
+	/**
+	Auto resize the rectangle to fit to the text
+	@property autoSize
+	*/
 	this.autoSize = autoSize != null ? autoSize : false;
 	
+	/**
+	Temporary untested function for getting the height of a line of text
+	@method LineHeight
+	*/
 	this.LineHeight = function() {
 		return this.fontSize + 2;
 	}
 	
-	// Pulled this function (because I'm lazy) from:  http://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
+	/**
+	Draw and wrap the text to this labels rectangle. Pulled this function (because I'm lazy) from:  <a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/">http://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/</a>
+	@method WrapText
+	*/
 	this.WrapText = function(context, text, x, y, maxWidth, lineHeight) {
 		var words = text.split(' ');
 		var line = '';
@@ -36,6 +76,10 @@ var $Label = function(rect, text, textWrap, autoSize) {
 		context.fillText(line, x, y);
 	}
 	
+	/**
+	Assign the text for this label and auto resize the rect if <a href="$Label.html#property_autoSize">autoSize</a> is true
+	@method SetText
+	*/
 	this.SetText = function(text) {
 		this.text = text;
 		
@@ -50,6 +94,12 @@ var $Label = function(rect, text, textWrap, autoSize) {
 		this.SetText(text);
 	}
 	
+	/**
+	Draw this label to the screen
+	Note: This function is designed to work with the <a href="$Canvas.html#event_drawing">drawing</a> $Event object of the main Canvas object
+	@method Draw
+	@param {$Canvas} Canvas The Canvas to be drawn on
+	*/
 	this.Draw = function(canvas) {
 		canvas.context.textBaseline = this.textBaseline;
 		canvas.context.font = this.fontSize + "px " + this.font;
@@ -60,7 +110,14 @@ var $Label = function(rect, text, textWrap, autoSize) {
 		}
 	};
 	
-	this.TypeWriter = function(text, current, speed) {
+	/**
+	A cool effect to make it seem like the text is being typed out
+	@method SetText
+	@param {String} text The text that is to be written out
+	@param {Int} speed The time in milliseconds between each letter appearing
+	@param {Int} current The current index (char) of the string (just keep at 0)
+	*/
+	this.TypeWriter = function(text, speed, current) {
 		this.SetText(text.substr(0, current));
 	
 		if (current++ == text.length) {
@@ -68,7 +125,7 @@ var $Label = function(rect, text, textWrap, autoSize) {
 		}
 		
 		var that = this;
-		setTimeout(function() { that.TypeWriter(text, current, speed); }, speed);
+		setTimeout(function() { that.TypeWriter(text, speed, current); }, speed);
 	};
 };
 

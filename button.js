@@ -1,7 +1,23 @@
+/**
+A normal button ui element for clicing and firing click events
+@class $Button
+@constructor
+@extends $UI
+*/
 var $Button = function(rect, label, callback) {
 	this.init(rect);
 	
+	/**
+	The stroke width of the button border
+	@property strokeWidth
+	*/
 	this.strokeWidth = 1;
+	
+	/**
+	Overrides parent <a href="$UI.html#property_hoverPointer">hoverPointer</a>
+	@property hoverPointer
+	@default "pointer"
+	*/
 	this.hoverPointer = "pointer";
 	
 	if (label != null) {
@@ -13,6 +29,10 @@ var $Button = function(rect, label, callback) {
 		this.onClick.Register(callback);
 	}
 	
+	/**
+	Set the text for the label. This is mainly used to auto update the size (if this.label.<a href="$Label.html#property_autoSize">autoSize</a> is enabled)
+	@method SetText
+	*/
 	this.SetText = function(text) {
 		this.label.SetText(text);
 		
@@ -24,10 +44,18 @@ var $Button = function(rect, label, callback) {
 		this.SetText(label.text);
 	}
 	
+	/**
+	Draw this button to the screen
+	Note: This function is designed to work with the <a href="$Canvas.html#event_drawing">drawing</a> $Event object of the main Canvas object
+	@method Draw
+	@param {$Canvas} Canvas The Canvas to be drawn on
+	*/
 	this.Draw = function(canvas) {
 		this.label.Draw(canvas);
-		canvas.context.lineWidth = this.strokeWidth;
-		canvas.context.strokeRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
+		if (this.strokeWidth > 0) {
+			canvas.context.lineWidth = this.strokeWidth;
+			canvas.context.strokeRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
+		}
 	};
 
 	//////////////////////////////
