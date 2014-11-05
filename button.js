@@ -6,6 +6,7 @@ var $Button = function(rect, label, callback) {
 	
 	if (label != null) {
 		this.label = label;
+		this.label.autoSize = true;
 	}
 	
 	if (callback != null) {
