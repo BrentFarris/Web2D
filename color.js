@@ -32,6 +32,10 @@ $Color = function(r, g, b, a) {
 	*/
 	this.a = a == null ? 0 : 1.0;
 	
+	this.__defineGetter__("Standard", function() {
+		return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";
+	});
+	
 	/**
 	Converts this color object to a Canvas readable color string "rgba(r,g,b,a)" or "rgb(r,g,b)"
 	@method ToStandard

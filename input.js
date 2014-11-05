@@ -133,7 +133,7 @@ var $Input = function() {
 	*/
 	this.mouseUp	= new $Event();
 	/**
-	Fired when a key has changed position
+	Fired when the mouse has changed position
 	@event mouseMove
 	@param {Int} x The x position of the mouse after the update
 	@param {Int} y The y position of the mouse after the update

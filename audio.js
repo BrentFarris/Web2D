@@ -23,9 +23,9 @@ var $Audio = function(src) {
 	@method IsPlaying
 	@return Literal True if the audio clip is currently playing
 	*/
-	this.IsPlaying = function() {
+	this.__defineGetter__("IsPlaying", function() {
 		return this.clip.ended;
-	};
+	});
 	
 	/**
 	Plays this audio clip. If looping it will play it for the remaining loop count
@@ -75,6 +75,10 @@ var $Audio = function(src) {
 		if (this.loops > 0)
 			this.Play();
 	};
+	
+	this.__defineSetter__("Loops", function(val) {
+		this.SetLoopCount(val);
+	});
 	
 	/**
 	Sets how many times the audio clip should loop when playing. If 0 is passed then it will loop forever, if -1 is passed then it will turn looping off, otherwise loops the specified amount

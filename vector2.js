@@ -46,9 +46,9 @@ $Vector2 = function(x, y) {
 	@method Magnitude
 	@return Float The length of the hypotenuse
 	*/
-	this.Magnitude = function() {
+	this.__defineGetter__("Magnitude", function() {
 		return Math.sqrt((this.x * this.x) + (this.y * this.y))
-	};
+	});
 	
 	/**
 	Get's the dot product of this vector and another
@@ -76,7 +76,7 @@ $Vector2 = function(x, y) {
 	@method Normalized
 	@return $Vector2 The normalized $Vector2
 	*/
-	this.Normalized = function() {
+	this.__defineGetter__("Normalized", function() {
 		var tmp = new $Vector2(this.x, this.y);
 		
 		var mag = this.Magnitude();
@@ -84,7 +84,7 @@ $Vector2 = function(x, y) {
 		tmp.y = tmp.y / mag;
 		
 		return tmp;
-	};
+	});
 	
 	/**
 	Will get the distance between this vector and another supplied vector
