@@ -115,10 +115,10 @@ var $Label = function(rect, text, textWrap, autoSize) {
 	};
 	
 	/**
-	@property typeWriterTimeout
+	@property stopTypeWriter
 	@private
 	*/
-	this.typeWriterTimeout = null;
+	this.stopTypeWriter = false;
 	
 	/**
 	A cool effect to make it seem like the text is being typed out
@@ -128,6 +128,13 @@ var $Label = function(rect, text, textWrap, autoSize) {
 	@param {Int} current The current index (char) of the string (just keep at 0)
 	*/
 	this.TypeWriter = function(text, speed, callback, current) {
+		if (this.stopTypeWriter) {
+			this.stopTypeWriter = false;
+			this.SetText(text);
+			callback();
+			return;
+		}
+		
 		this.SetText(text.substr(0, current));
 	
 		if (current++ == text.length) {
@@ -142,8 +149,12 @@ var $Label = function(rect, text, textWrap, autoSize) {
 		this.typeWriterTimeout = setTimeout(function() { that.TypeWriter(text, speed, callback, current); }, speed);
 	};
 	
+	/**
+	Stop the current typewriter and just finish now
+	@method SetText
+	*/
 	this.StopTypeWriter = function() {
-		clearTimeout(this.TypeWriter);
+		this.stopTypeWriter = true;
 	}
 };
 

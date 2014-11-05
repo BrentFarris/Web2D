@@ -5,7 +5,7 @@ var camera = new Camera();
 var mario = new Mario();
 var goombas = new Array();
 
-for (var i = 0; i < 0; i++) {
+for (var i = 0; i < 5; i++) {
 	var goomba = new Goomba();
 	goomba.rect.x = 500 + i * 30;
 	goombas.push(goomba);
