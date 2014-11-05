@@ -40,8 +40,8 @@ var $Button = function(rect, label, callback) {
 		this.strokeWidth = 1;
 	};
 	
-	b.onMouseOver.Register(this.HoverOverEffect, this);
-	b.onMouseOut.Register(this.HoverOutEffect, this);
+	this.onMouseOver.Register(this.HoverOverEffect, this);
+	this.onMouseOut.Register(this.HoverOutEffect, this);
 };
 
 $Button.prototype = new $UI();
