@@ -16,6 +16,7 @@ var $UI = function() {
 	
 	this.InputMouseUp = function() {
 		if (!this.ContainsMouse()) {
+			this.clicking = false;
 			return;
 		}
 		
