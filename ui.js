@@ -66,6 +66,12 @@ var $UI = function() {
 	*/
 	this.Enable = function() {
 		if (!this.enabled) {
+			if (Canvas.elm.style.cursor == "auto") {
+				if (this.ContainsMouse()) {
+					Canvas.elm.style.cursor = this.hoverPointer;
+				}
+			}
+			
 			this.onEnable.Fire();
 		}
 		
@@ -78,6 +84,12 @@ var $UI = function() {
 	*/
 	this.Disable = function() {
 		if (this.enabled) {
+			if (Canvas.elm.style.cursor != "auto") {
+				if (this.ContainsMouse()) {
+					Canvas.elm.style.cursor = "auto";
+				}
+			}
+			
 			this.onDisable.Fire();
 		}
 		
