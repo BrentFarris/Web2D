@@ -44,6 +44,12 @@ var $Label = function(rect, text, textWrap, autoSize) {
 	this.autoSize = autoSize != null ? autoSize : false;
 	
 	/**
+	The color for the text to be drawn in
+	@property color
+	*/
+	this.color = new $Color(0, 0, 0);
+	
+	/**
 	Temporary untested function for getting the height of a line of text
 	@method LineHeight
 	*/
@@ -105,6 +111,7 @@ var $Label = function(rect, text, textWrap, autoSize) {
 			return;
 		}
 		
+		canvas.context.fillStyle = this.color.ToStandard();
 		canvas.context.textBaseline = this.textBaseline;
 		canvas.context.font = this.fontSize + "px " + this.font;
 		if (this.textWrap) {
