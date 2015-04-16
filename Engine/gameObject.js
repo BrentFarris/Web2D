@@ -5,12 +5,17 @@ var $GameObject = function() {
 	this.collider = null;
 	
 	this.Update = function() {
+		if (NULL(this.collider)) {
+			return;
+		}
+		
 		this.collider.Update(this);
 	};
 	
 	this.Draw = function(canvas) {
-		if (this.renderer == null)
+		if (NULL(this.renderer)) {
 			return;
+		}
 		
 		var xOffset = (this.transform.position.x * this.transform.scale.x) - this.transform.position.x;
 		var yOffset = (this.transform.position.y * this.transform.scale.y) - this.transform.position.y;
@@ -31,7 +36,7 @@ var $GameObject = function() {
 		canvas.context.translate(-xOffset, -yOffset);
 	};
 	
-	if (Canvas != 'undefined') {
+	if (!NULL(Canvas)) {
 		Canvas.updating.Register(this.Update, this);
 		Canvas.drawing.Register(this.Draw, this);
 	}
