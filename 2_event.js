@@ -3,7 +3,7 @@ The event class is responsible for registering multiple events to one function c
 @class $Event
 @constructor
 */
-var $Event = function(test) {
+var $Event = function() {
 	/**
 	The list of events to be fired when "Fire" is called
 	@property events
