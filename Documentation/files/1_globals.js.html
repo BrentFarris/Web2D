@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>9_canvas.js</title>
+    <title>1_globals.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -114,152 +114,56 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: 9_canvas.js</h1>
+                        <h1 class="file-heading">File: 1_globals.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
+function NULL(val) {
+	return val == null || val == undefined;
+}
+
 /**
-An object to manage a HTML5 &lt;Canvas&gt; element
-@class $Canvas
-@constructor
-@param elm {Object} The Canvas element on the page to reference
-@param [widthPercent=null] {Float} The width scale factor of the Canvas (if null uses default width set in the Canvas tag)
-@param [heightPercent=null] {Float} The height scale factor of the Canvas (if null uses default height set in the Canvas tag)
+The base static timer
+@class Time
 */
-var $Canvas = function(elm, widthPercent, heightPercent) {
-	if (elm === &quot;undefined&quot;)
-		throw &quot;The Canvas id passed was not valid&quot;;
+var Time = {
+	/**
+	The internal current date timestamp for this interval
+	@property current
+	@private
+	*/
+	current : null,
 	
 	/**
-	This is the actual Canvas element in the document
-	@property elm
-	@protected
+	The internal previous date timestamp for the last interval
+	@property previous
+	@private
 	*/
-	this.elm				= elm;
-	/**
-	The context which is required to get anything showing up
-	@property context
-	*/
-	this.context			= this.elm.getContext(&quot;2d&quot;);
-
-	if (widthPercent != null)
-		this.elm.width = document.body.clientWidth * widthPercent;
-
-	if (heightPercent != null)
-		this.elm.height = document.body.clientHeight * heightPercent;
-
-	this.elm.style.width	= this.elm.width + &quot;px&quot;;
-	this.elm.style.height	= this.elm.height + &quot;px&quot;;
+	previous : null,
 	
 	/**
-	The current scale of the canvas on the x and y; 1 is default
-	@property scale
+	The current time as a float in seconds
+	@property time
 	*/
-	this.scale = new $Vector2(1, 1);
-	/**
-	The current width of the canvas (this works well with scaling)
-	@property width
-	*/
-	this.width = this.elm.width;
-	/**
-	The current height of the canvas (this works well with scaling)
-	@property height
-	*/
-	this.height = this.elm.height;
+	time : 0,
 	
 	/**
-	Fires at the beginning this objects &lt;a href=&quot;$Canvas.html#method_Draw&quot;&gt;Draw&lt;/a&gt; function before the &lt;a href=&quot;$Canvas.html#event_Draw&quot;&gt;drawing&lt;/a&gt; event fires
-	@event updating
-	@param {$Canvas} Canvas 
+	The reference to the setInterval object
+	@property update
 	*/
-	this.updating			= new $Event();
-	
-	/**
-	Fires whenever this objects &lt;a href=&quot;$Canvas.html#method_Draw&quot;&gt;Draw&lt;/a&gt; function is called
-	@event drawing
-	@param {$Canvas} Canvas 
-	*/
-	this.drawing			= new $Event();
-	
-	/**
-	Calls all of the events registered to &lt;a href=&quot;$Canvas.html#event_drawing&quot;&gt;drawing&lt;/a&gt; event on this Canvas object
-	@method Draw
-	*/
-	this.Draw = function() {
-		this.updating.Fire();
-		this.drawing.Fire([this]);
-	};
-	
-	/**
-	This will scale the canvas up without resizing the canvas. It only scales up everything that is being drawn (1, 1) is default (2, 2) would be 2x the size of default
-	@method Scale
-	@param {Int} x The scale for the x-axis
-	@param {Int} y The scale for the y-axis
-	*/
-	this.Scale = function(x, y) {
-		this.context.scale(x, y);
-		
-		this.width = this.width * (1 / x);
-		this.height = this.height * (1 / y);
-		
-		this.scale.x = x;
-		this.scale.y = y;
-	};
+	update : null
 };
 
-var Canvas = null;
-var requestId = 0;
-
-/**
-Registers the Canvas to be used for the main drawing
-@method registerCanvas
-@param {Object} elm The Canvas element to be used from the document
-@param [widthPercent=null] {Float} The width scale factor of the Canvas (if null uses default width set in the Canvas tag)
-@param [heightPercent=null] {Float} The height scale factor of the Canvas (if null uses default height set in the Canvas tag)
-@return 
-*/
-function registerCanvas(elm, widthPercent, heightPercent) {
-	if (Canvas != null)
-		throw &quot;Canvas already registered&quot;;
+Time.update = window.setInterval(function() {
+	if (NULL(Time.previous)) {
+		Time.previous = new Date();
+	}
 	
-	Canvas = new $Canvas(elm, widthPercent, heightPercent);
-	Canvas.drawing.Register(UpdateRequestId);
-	
-	Start();
-}
-
-//----------------------------------
-// The following is automatic to register the HTML5 animation callback from the browser
-//----------------------------------
-(function(){
-	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-		window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-	
-	window.requestAnimationFrame = requestAnimationFrame;
-})();
-
-function UpdateRequestId(context) {
-	requestId = window.requestAnimationFrame(DrawCanvas);
-}
-
-function DrawCanvas() {
-	Canvas.context.clearRect(0, 0, Canvas.elm.width, Canvas.elm.height);
-	Canvas.Draw();
-}
-
-function Start() {
-	if (Canvas == null)
-		throw &quot;You must first register a Canvas with the \&quot;registerCanvas\&quot; function&quot;;
-	
-	requestId = window.requestAnimationFrame(DrawCanvas);
-}
-
-function Stop() {
-	if (requestId)
-		window.cancelAnimationFrame(requestId);
-	
-	requestId = 0;
-}
+	Time.current = new Date();
+	Time.time += (new Date(Time.current - Time.previous).getMilliseconds()) * 0.001;
+	document.title = Time.time;
+	Time.previous = Time.current;
+}, 1);
 
     </pre>
 </div>

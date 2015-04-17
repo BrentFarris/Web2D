@@ -64,6 +64,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "1_globals.js": {
+            "name": "1_globals.js",
+            "modules": {},
+            "classes": {
+                "Time": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "2_event.js": {
             "name": "2_event.js",
             "modules": {},
@@ -299,6 +308,18 @@
             "description": "A label to have text rendered to the screen",
             "is_constructor": 1,
             "extends": "$UI"
+        },
+        "Time": {
+            "name": "Time",
+            "shortname": "Time",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "1_globals.js",
+            "line": 5,
+            "description": "The base static timer"
         },
         "$Event": {
             "name": "$Event",
@@ -1474,6 +1495,42 @@
             "itemtype": "method",
             "name": "SetText",
             "class": "$Label"
+        },
+        {
+            "file": "1_globals.js",
+            "line": 10,
+            "description": "The internal current date timestamp for this interval",
+            "itemtype": "property",
+            "name": "current",
+            "access": "private",
+            "tagname": "",
+            "class": "Time"
+        },
+        {
+            "file": "1_globals.js",
+            "line": 17,
+            "description": "The internal previous date timestamp for the last interval",
+            "itemtype": "property",
+            "name": "previous",
+            "access": "private",
+            "tagname": "",
+            "class": "Time"
+        },
+        {
+            "file": "1_globals.js",
+            "line": 24,
+            "description": "The current time as a float in seconds",
+            "itemtype": "property",
+            "name": "time",
+            "class": "Time"
+        },
+        {
+            "file": "1_globals.js",
+            "line": 30,
+            "description": "The reference to the setInterval object",
+            "itemtype": "property",
+            "name": "update",
+            "class": "Time"
         },
         {
             "file": "2_event.js",

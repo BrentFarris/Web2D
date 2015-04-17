@@ -16,7 +16,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "$UI",
         "$Vector2",
         "$Window",
-        "Array"
+        "Array",
+        "Time"
     ],
     "modules": [],
     "allModules": []
