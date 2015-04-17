@@ -2112,7 +2112,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 81,
+            "line": 80,
             "description": "Debug draw the rectangle on the Canvas with the supplied color\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main Canvas object",
             "itemtype": "method",
             "name": "Draw",
