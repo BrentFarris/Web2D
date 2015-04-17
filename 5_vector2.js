@@ -1,6 +1,7 @@
 /**
 A basic 2 dimensional vector
 @class $Vector2
+@constructor
 @param {Float} [x=0] The x dimension of the vector
 @param {Float} [y=0] The y dimension of the vector
 */

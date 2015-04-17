@@ -176,6 +176,7 @@
             "file": "11_image.js",
             "line": 1,
             "description": "A default image class that allows for easy drawing in the engine",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "src",
@@ -200,6 +201,7 @@
             "file": "12_spriteSheet.js",
             "line": 1,
             "description": "A helper class that allows to easily animate regular (same sized) sprite sheets",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "width",
@@ -248,8 +250,7 @@
                     "description": "How many total rows this animation has",
                     "type": "Int"
                 }
-            ],
-            "is_constructor": 1
+            ]
         },
         "$Audio": {
             "name": "$Audio",
@@ -262,14 +263,14 @@
             "file": "13_audio.js",
             "line": 1,
             "description": "An object to manage a HTML5 Audio element",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "elm",
                     "description": "The audio clip to be managed or the string source of the audio clip",
                     "type": "Audio|String"
                 }
-            ],
-            "is_constructor": 1
+            ]
         },
         "$Button": {
             "name": "$Button",
@@ -322,7 +323,8 @@
             "extension_for": [],
             "file": "3_window.js",
             "line": 1,
-            "description": "An extension to the main window object"
+            "description": "An extension to the main window object",
+            "is_constructor": 1
         },
         "$Document": {
             "name": "$Document",
@@ -334,7 +336,8 @@
             "extension_for": [],
             "file": "4_document.js",
             "line": 1,
-            "description": "An extension to the main document object"
+            "description": "An extension to the main document object",
+            "is_constructor": 1
         },
         "$Vector2": {
             "name": "$Vector2",
@@ -347,6 +350,7 @@
             "file": "5_vector2.js",
             "line": 1,
             "description": "A basic 2 dimensional vector",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "x",
@@ -375,6 +379,7 @@
             "file": "6_rectangle.js",
             "line": 1,
             "description": "A simple rectangle that can be used for placement, collision detection or even for debugging",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "x",
@@ -414,6 +419,7 @@
             "file": "7_color.js",
             "line": 1,
             "description": "A basic class to handle color (rgba) and its conversions for Canvas",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "r",
@@ -482,6 +488,7 @@
             "file": "9_canvas.js",
             "line": 1,
             "description": "An object to manage a HTML5 <Canvas> element",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "elm",
@@ -502,8 +509,7 @@
                     "optional": true,
                     "optdefault": "null"
                 }
-            ],
-            "is_constructor": 1
+            ]
         }
     },
     "classitems": [
@@ -623,13 +629,13 @@
         {
             "file": "0_arrayExtensions.js",
             "line": 113,
-            "description": "Iterate through the collection and pass each element\nin the collection through the supplied expression",
+            "description": "Iterate through the collection and pass each element in the collection through the supplied expression",
             "itemtype": "method",
             "name": "iterate",
             "params": [
                 {
                     "name": "expression",
-                    "description": "The Anonymous function that each element\nin the collection will be passed through",
+                    "description": "The Anonymous function that each element in the collection will be passed through",
                     "type": "Function"
                 }
             ],
@@ -641,14 +647,14 @@
         },
         {
             "file": "0_arrayExtensions.js",
-            "line": 130,
-            "description": "Iterate through the collection and pass each element\nin the collection through the supplied expression, whatever is returned from\nthe expression is added to a collection that is then returned",
+            "line": 128,
+            "description": "Iterate through the collection and pass each element in the collection through the supplied expression, whatever is returned from the expression is added to a collection that is then returned",
             "itemtype": "method",
             "name": "iterateExecute",
             "params": [
                 {
                     "name": "expression",
-                    "description": "The Anonymous function that each element\nin the collection will be passed through",
+                    "description": "The Anonymous function that each element in the collection will be passed through",
                     "type": "Function"
                 },
                 {
@@ -669,14 +675,14 @@
         },
         {
             "file": "0_arrayExtensions.js",
-            "line": 159,
+            "line": 154,
             "description": "Find all objects in the array that meet the expression",
             "itemtype": "method",
             "name": "where",
             "params": [
                 {
                     "name": "expression",
-                    "description": "The expression that is to be evaluated on each\nelement in the collection",
+                    "description": "The expression that is to be evaluated on each element in the collection",
                     "type": "Function"
                 }
             ],
@@ -692,8 +698,8 @@
         },
         {
             "file": "0_arrayExtensions.js",
-            "line": 180,
-            "description": "Returns the first element in the collection that passes\nthe expressions boolean check",
+            "line": 174,
+            "description": "Returns the first element in the collection that passes the expressions boolean check",
             "itemtype": "method",
             "name": "findFirst",
             "params": [
@@ -713,8 +719,8 @@
         },
         {
             "file": "0_arrayExtensions.js",
-            "line": 198,
-            "description": "Returns the last element in the collection that passes\nthe expressions boolean check",
+            "line": 191,
+            "description": "Returns the last element in the collection that passes the expressions boolean check",
             "itemtype": "method",
             "name": "findLast",
             "params": [
@@ -871,7 +877,7 @@
         },
         {
             "file": "11_image.js",
-            "line": 8,
+            "line": 9,
             "description": "The actual native JavaScript Image object",
             "itemtype": "property",
             "name": "image",
@@ -879,7 +885,7 @@
         },
         {
             "file": "11_image.js",
-            "line": 13,
+            "line": 14,
             "description": "The rectangle for the image to be drawn in",
             "itemtype": "property",
             "name": "rect",
@@ -887,7 +893,7 @@
         },
         {
             "file": "11_image.js",
-            "line": 31,
+            "line": 32,
             "description": "Used to load in an image for this object",
             "itemtype": "method",
             "name": "Load",
@@ -902,7 +908,7 @@
         },
         {
             "file": "11_image.js",
-            "line": 43,
+            "line": 44,
             "description": "Set the position for this object's rectangle",
             "itemtype": "method",
             "name": "Position",
@@ -922,7 +928,7 @@
         },
         {
             "file": "11_image.js",
-            "line": 54,
+            "line": 55,
             "description": "Resize how large this image is drawn onto the canvas",
             "itemtype": "method",
             "name": "Resize",
@@ -942,7 +948,7 @@
         },
         {
             "file": "11_image.js",
-            "line": 65,
+            "line": 66,
             "description": "Used to draw this image in a particular location on the canvas",
             "itemtype": "method",
             "name": "Draw",
@@ -967,7 +973,7 @@
         },
         {
             "file": "11_image.js",
-            "line": 76,
+            "line": 77,
             "description": "Used to draw this image on the canvas\nNote: This is made to work with the canvas <a href=\"$Canvas.html#event_drawing\">drawing</a> event",
             "itemtype": "method",
             "name": "SimpleDraw",
@@ -1531,7 +1537,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 6,
+            "line": 7,
             "description": "Finds the left offset in pixels of an element on the page",
             "itemtype": "method",
             "name": "GetLeft",
@@ -1549,7 +1555,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 22,
+            "line": 23,
             "description": "Finds the top offset in pixels of an element on the page",
             "itemtype": "method",
             "name": "GetTop",
@@ -1567,7 +1573,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 39,
+            "line": 40,
             "description": "<a href=\"$Event.html\">Event</a> stack for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onafterprint",
@@ -1576,7 +1582,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 45,
+            "line": 46,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onbeforeprint",
@@ -1585,7 +1591,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 51,
+            "line": 52,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onbeforeunload",
@@ -1594,7 +1600,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 57,
+            "line": 58,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onerror",
@@ -1603,7 +1609,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 63,
+            "line": 64,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onhaschange",
@@ -1612,7 +1618,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 69,
+            "line": 70,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onload",
@@ -1621,7 +1627,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 75,
+            "line": 76,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onmessage",
@@ -1630,7 +1636,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 81,
+            "line": 82,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onoffline",
@@ -1639,7 +1645,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 87,
+            "line": 88,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "ononline",
@@ -1648,7 +1654,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 93,
+            "line": 94,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onpagehide",
@@ -1657,7 +1663,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 99,
+            "line": 100,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onpageshow",
@@ -1666,7 +1672,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 105,
+            "line": 106,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onpopstate",
@@ -1675,7 +1681,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 111,
+            "line": 112,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onredo",
@@ -1684,7 +1690,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 117,
+            "line": 118,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onresize",
@@ -1705,7 +1711,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 125,
+            "line": 126,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onstorage",
@@ -1714,7 +1720,7 @@
         },
         {
             "file": "3_window.js",
-            "line": 131,
+            "line": 132,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onunload",
@@ -1723,7 +1729,7 @@
         },
         {
             "file": "4_document.js",
-            "line": 7,
+            "line": 8,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onmousemove",
@@ -1744,7 +1750,7 @@
         },
         {
             "file": "4_document.js",
-            "line": 15,
+            "line": 16,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onmousedown",
@@ -1753,7 +1759,7 @@
         },
         {
             "file": "4_document.js",
-            "line": 21,
+            "line": 22,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onmouseup",
@@ -1762,7 +1768,7 @@
         },
         {
             "file": "4_document.js",
-            "line": 27,
+            "line": 28,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onkeydown",
@@ -1778,7 +1784,7 @@
         },
         {
             "file": "4_document.js",
-            "line": 34,
+            "line": 35,
             "description": "<a href=\"$Event.html\">Event</a> for the \"window\" object version of this function",
             "itemtype": "event",
             "name": "onkeyup",
@@ -1794,7 +1800,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 8,
+            "line": 9,
             "description": "The x dimension of this vector",
             "itemtype": "property",
             "name": "x",
@@ -1803,7 +1809,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 14,
+            "line": 15,
             "description": "The y dimension of this vector",
             "itemtype": "property",
             "name": "y",
@@ -1812,7 +1818,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 21,
+            "line": 22,
             "description": "Copys the x and y dimension of a $Vector2 to this one",
             "itemtype": "method",
             "name": "Set",
@@ -1827,7 +1833,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 34,
+            "line": 35,
             "description": "Transposes this vector by another vector by shifting (adding)",
             "itemtype": "method",
             "name": "Move",
@@ -1842,7 +1848,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 44,
+            "line": 45,
             "description": "Get's the magnitude (pythagorean theorem) of this vector (the length of the hypotenuse of the right triangle produced by this vector)",
             "itemtype": "method",
             "name": "Magnitude",
@@ -1853,7 +1859,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 53,
+            "line": 54,
             "description": "Get's the dot product of this vector and another",
             "itemtype": "method",
             "name": "Dot",
@@ -1871,7 +1877,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 63,
+            "line": 64,
             "description": "Get's the cross product of this vector and another\nNote: The cross product is often done with a 3 dimensional vector, so in this case it will actually return a scalar",
             "itemtype": "method",
             "name": "Cross",
@@ -1889,7 +1895,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 74,
+            "line": 75,
             "description": "This will return a new normalized $Vector2 of this vector",
             "itemtype": "method",
             "name": "Normalized",
@@ -1900,7 +1906,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 89,
+            "line": 90,
             "description": "Will get the distance between this vector and another supplied vector",
             "itemtype": "method",
             "name": "Distance",
@@ -1918,7 +1924,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 99,
+            "line": 100,
             "description": "Will subtract this vector from another vector",
             "itemtype": "method",
             "name": "Difference",
@@ -1936,7 +1942,7 @@
         },
         {
             "file": "5_vector2.js",
-            "line": 109,
+            "line": 110,
             "description": "Will add this vector from another vector",
             "itemtype": "method",
             "name": "Sum",
@@ -1954,7 +1960,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 11,
+            "line": 12,
             "description": "The x position of the $Rectangle",
             "itemtype": "property",
             "name": "x",
@@ -1963,7 +1969,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 17,
+            "line": 18,
             "description": "The y position of the $Rectangle",
             "itemtype": "property",
             "name": "y",
@@ -1972,7 +1978,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 23,
+            "line": 24,
             "description": "The width of the $Rectangle",
             "itemtype": "property",
             "name": "width",
@@ -1981,7 +1987,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 29,
+            "line": 30,
             "description": "The height of the $Rectangle",
             "itemtype": "property",
             "name": "height",
@@ -1990,7 +1996,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 35,
+            "line": 36,
             "description": "The color of the $Rectangle to be used for debug drawing",
             "itemtype": "property",
             "name": "color",
@@ -1999,7 +2005,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 42,
+            "line": 43,
             "description": "Checks to see if a point in 2D space (x and y) are within this $Rectangle's bounds",
             "itemtype": "method",
             "name": "Contains",
@@ -2022,7 +2028,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 54,
+            "line": 55,
             "description": "Check to see if this $Rectangle is intersecting another $Rectangle",
             "itemtype": "method",
             "name": "Intersects",
@@ -2047,7 +2053,7 @@
         },
         {
             "file": "6_rectangle.js",
-            "line": 80,
+            "line": 81,
             "description": "Debug draw the rectangle on the Canvas with the supplied color\nNote: This function is designed to work with the <a href=\"$Canvas.html#event_drawing\">drawing</a> $Event object of the main Canvas object",
             "itemtype": "method",
             "name": "Draw",
@@ -2062,7 +2068,7 @@
         },
         {
             "file": "7_color.js",
-            "line": 10,
+            "line": 11,
             "description": "The red of this color which is between 0 and 255 (inclusinve)",
             "itemtype": "property",
             "name": "r",
@@ -2071,7 +2077,7 @@
         },
         {
             "file": "7_color.js",
-            "line": 16,
+            "line": 17,
             "description": "The green of this color which is between 0 and 255 (inclusinve)",
             "itemtype": "property",
             "name": "g",
@@ -2080,7 +2086,7 @@
         },
         {
             "file": "7_color.js",
-            "line": 22,
+            "line": 23,
             "description": "The blue of this color which is between 0 and 255 (inclusinve)",
             "itemtype": "property",
             "name": "b",
@@ -2089,7 +2095,7 @@
         },
         {
             "file": "7_color.js",
-            "line": 28,
+            "line": 29,
             "description": "The alpha of this color which is between 0.0 and 1.0 (inclusinve)",
             "itemtype": "property",
             "name": "a",
@@ -2098,7 +2104,7 @@
         },
         {
             "file": "7_color.js",
-            "line": 39,
+            "line": 40,
             "description": "Converts this color object to a Canvas readable color string \"rgba(r,g,b,a)\" or \"rgb(r,g,b)\"",
             "itemtype": "method",
             "name": "ToStandard",

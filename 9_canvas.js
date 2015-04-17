@@ -1,10 +1,10 @@
 /**
 An object to manage a HTML5 <Canvas> element
 @class $Canvas
+@constructor
 @param elm {Object} The Canvas element on the page to reference
 @param [widthPercent=null] {Float} The width scale factor of the Canvas (if null uses default width set in the Canvas tag)
 @param [heightPercent=null] {Float} The height scale factor of the Canvas (if null uses default height set in the Canvas tag)
-@constructor
 */
 var $Canvas = function(elm, widthPercent, heightPercent) {
 	if (elm === "undefined")

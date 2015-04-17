@@ -1,6 +1,7 @@
 /**
 A simple rectangle that can be used for placement, collision detection or even for debugging	
 @class $Rectangle
+@constructor
 @param {Int} x The x position for the rectangle
 @param {Int} y The y position for the rectangle
 @param {Int} w The width for the rectangle

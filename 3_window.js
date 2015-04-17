@@ -1,6 +1,7 @@
 /**
-* An extension to the main window object
-* @class $Window
+An extension to the main window object
+@class $Window
+@constructor
 */
 var $Window = function() {
 	/**

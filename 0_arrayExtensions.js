@@ -111,13 +111,11 @@ Extension methods to the base array class
 	}
 	
 	/**
-	 * Iterate through the collection and pass each element
-	 * in the collection through the supplied expression
-	 * @method iterate
-	 * @param {function} expression The Anonymous function that each element
-	 * in the collection will be passed through
-	 * @example myArray.iterate(function(elm) { elm.count++; });
-	 * @chainable
+	Iterate through the collection and pass each element in the collection through the supplied expression
+	@method iterate
+	@param {function} expression The Anonymous function that each element in the collection will be passed through
+	@example myArray.iterate(function(elm) { elm.count++; });
+	@chainable
 	 */
 	Array.prototype.iterate = function(expression) {
 		for (var i = 0; i < this.length; i++) {
@@ -128,16 +126,13 @@ Extension methods to the base array class
 	}
 	
 	/**
-	 * Iterate through the collection and pass each element
-	 * in the collection through the supplied expression, whatever is returned from
-	 * the expression is added to a collection that is then returned
-	 * @method iterateExecute
-	 * @param {function} expression The Anonymous function that each element
-	 * in the collection will be passed through
-	 * @param {bool} $includeNulls Include null objects in the returned collection
-	 * @return {Array} The elements that passed the evaluation of the expression
-	 * @example var names = myArray.IterateExecute(function(elm) { return elm.name; });
-	 * @chainable
+	Iterate through the collection and pass each element in the collection through the supplied expression, whatever is returned from the expression is added to a collection that is then returned
+	@method iterateExecute
+	@param {function} expression The Anonymous function that each element in the collection will be passed through
+	@param {bool} $includeNulls Include null objects in the returned collection
+	@return {Array} The elements that passed the evaluation of the expression
+	@example var names = myArray.IterateExecute(function(elm) { return elm.name; });
+	@chainable
 	 */
 	Array.prototype.iterateExecute = function(expression, includeNulls) {
 		var evaluatedCollection = [];
@@ -157,13 +152,12 @@ Extension methods to the base array class
 	}
 	
 	/**
-	 * Find all objects in the array that meet the expression
-	 * @method where
-	 * @param {function} expression The expression that is to be evaluated on each
-	 * element in the collection
-	 * @return {Array} The elements that passed the functions boolean return
-	 * @example myArray.where(function(elm) { return elm.groupId == 1; });
-	 * @chainable
+	Find all objects in the array that meet the expression
+	@method where
+	@param {function} expression The expression that is to be evaluated on each element in the collection
+	@return {Array} The elements that passed the functions boolean return
+	@example myArray.where(function(elm) { return elm.groupId == 1; });
+	@chainable
 	 */
 	Array.prototype.where = function(expression) {
 		var evaluatedCollection = [];
@@ -178,12 +172,11 @@ Extension methods to the base array class
 	}
 	
 	/**
-	 * Returns the first element in the collection that passes
-	 * the expressions boolean check
-	 * @method findFirst
-	 * @param {function} expression The expression that is to be evaluated true/false
-	 * @return Object|null The first object where the expression returned true or null if all returned false
-	 * @example var first = myArray.first(function(elm) { return elm.firstName == "Brent"; });
+	Returns the first element in the collection that passes the expressions boolean check
+	@method findFirst
+	@param {function} expression The expression that is to be evaluated true/false
+	@return Object|null The first object where the expression returned true or null if all returned false
+	@example var first = myArray.first(function(elm) { return elm.firstName == "Brent"; });
 	 */
 	Array.prototype.findFirst = function(expression) {
 		for (var i = 0; i < this.length; i++) {
@@ -196,12 +189,11 @@ Extension methods to the base array class
 	}
 	
 	/**
-	 * Returns the last element in the collection that passes
-	 * the expressions boolean check
-	 * @method findLast
-	 * @param {function} expression The expression that is to be evaluated true/false
-	 * @return Object|null The last object where the expression returned true or null if all returned false
-	 * @example myArray.last(function(elm) { return elm.lastName == "Farris"; });
+	Returns the last element in the collection that passes the expressions boolean check
+	@method findLast
+	@param {function} expression The expression that is to be evaluated true/false
+	@return Object|null The last object where the expression returned true or null if all returned false
+	@example myArray.last(function(elm) { return elm.lastName == "Farris"; });
 	 */
 	Array.prototype.findLast = function(expression) {
 		for (var i = this.length - 1; i >= 0; i--) {

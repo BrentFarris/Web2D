@@ -1,6 +1,7 @@
 /**
 An extension to the main document object
 @class $Document
+@constructor
 */
 var $Document = function() { };
 
