@@ -161,7 +161,6 @@ Time.update = window.setInterval(function() {
 	
 	Time.current = new Date();
 	Time.time += (new Date(Time.current - Time.previous).getMilliseconds()) * 0.001;
-	document.title = Time.time;
 	Time.previous = Time.current;
 }, 1);
 
