@@ -164,6 +164,55 @@ Time.update = window.setInterval(function() {
 	Time.previous = Time.current;
 }, 1);
 
+
+function GET(url, success, error)
+{
+	var http;
+	if (window.XMLHttpRequest) {
+		http = new XMLHttpRequest();
+	} else {
+		http = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+	}
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 4 &amp;&amp; http.status == 200) {
+			success(http.responseText);
+		} else {
+			error(http);
+		}
+	}
+	
+	http.open(&quot;GET&quot;, url, true);
+	http.send();
+}
+
+function LoadHTML(file, elm) {
+	GET(file, function(html) {
+		elm.innerHTML = html;
+	});
+}
+
+function LoadJS(file) {
+	var src = document.createElement(&#x27;script&#x27;);
+	src.setAttribute(&quot;type&quot;, &quot;text/javascript&quot;);
+	src.setAttribute(&quot;src&quot;, file);
+	document.getElementsByTagName(&quot;head&quot;)[0].appendChild(src);
+}
+
+function LoadCSS(file) {
+	var src = document.createElement(&quot;link&quot;)
+	src.setAttribute(&quot;rel&quot;, &quot;stylesheet&quot;)
+	src.setAttribute(&quot;type&quot;, &quot;text/css&quot;)
+	src.setAttribute(&quot;href&quot;, file);
+	document.getElementsByTagName(&quot;head&quot;)[0].appendChild(src);
+}
+
+function GetParam(name) {
+	name = name.replace(/[\[]/, &quot;\\[&quot;).replace(/[\]]/, &quot;\\]&quot;);
+	var regex = new RegExp(&quot;[\\?&amp;]&quot; + name + &quot;=([^&amp;#]*)&quot;), results = regex.exec(location.search);
+	return results === null ? &quot;&quot; : decodeURIComponent(results[1].replace(/\+/g, &quot; &quot;));
+}
+
     </pre>
 </div>
 

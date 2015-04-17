@@ -43,3 +43,52 @@ Time.update = window.setInterval(function() {
 	Time.time += (new Date(Time.current - Time.previous).getMilliseconds()) * 0.001;
 	Time.previous = Time.current;
 }, 1);
+
+
+function GET(url, success, error)
+{
+	var http;
+	if (window.XMLHttpRequest) {
+		http = new XMLHttpRequest();
+	} else {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 4 && http.status == 200) {
+			success(http.responseText);
+		} else {
+			error(http);
+		}
+	}
+	
+	http.open("GET", url, true);
+	http.send();
+}
+
+function LoadHTML(file, elm) {
+	GET(file, function(html) {
+		elm.innerHTML = html;
+	});
+}
+
+function LoadJS(file) {
+	var src = document.createElement('script');
+	src.setAttribute("type", "text/javascript");
+	src.setAttribute("src", file);
+	document.getElementsByTagName("head")[0].appendChild(src);
+}
+
+function LoadCSS(file) {
+	var src = document.createElement("link")
+	src.setAttribute("rel", "stylesheet")
+	src.setAttribute("type", "text/css")
+	src.setAttribute("href", file);
+	document.getElementsByTagName("head")[0].appendChild(src);
+}
+
+function GetParam(name) {
+	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
