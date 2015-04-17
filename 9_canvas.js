@@ -49,7 +49,7 @@ var $Canvas = function(elm, widthPercent, heightPercent) {
 	
 	/**
 	Fires at the beginning this objects <a href="$Canvas.html#method_Draw">Draw</a> function before the <a href="$Canvas.html#event_Draw">drawing</a> event fires
-	@event drawing
+	@event updating
 	@param {$Canvas} Canvas 
 	*/
 	this.updating			= new $Event();

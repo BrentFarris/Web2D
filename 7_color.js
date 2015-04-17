@@ -13,25 +13,25 @@ $Color = function(r, g, b, a) {
 	@property r
 	@type Int
 	*/
-	this.r = r == null ? 0 : 255;
+	this.r = NULL(r) ? 255 : r;
 	/**
 	The green of this color which is between 0 and 255 (inclusinve)
 	@property g
 	@type Int
 	*/
-	this.g = g == null ? 0 : 255;
+	this.g = NULL(g) ? 255 : g;
 	/**
 	The blue of this color which is between 0 and 255 (inclusinve)
 	@property b
 	@type Int
 	*/
-	this.b = b == null ? 0 : 255;
+	this.b = NULL(b) ? 255 : b;
 	/**
 	The alpha of this color which is between 0.0 and 1.0 (inclusinve)
 	@property a
 	@type Float
 	*/
-	this.a = a == null ? 0 : 1.0;
+	this.a = NULL(a) ? 1.0 : a;
 	
 	this.__defineGetter__("Standard", function() {
 		return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";

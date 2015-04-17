@@ -14,31 +14,31 @@ $Rectangle = function(x, y, w, h, color) {
 	@property x
 	@type Int
 	*/
-	this.x		= x == null ? 0 : x;
+	this.x		= NULL(x) ? 0 : x;
 	/**
 	The y position of the $Rectangle
 	@property y
 	@type Int
 	*/
-	this.y		= y == null ? 0 : y;
+	this.y		= NULL(y) ? 0 : y;
 	/**
 	The width of the $Rectangle
 	@property width
 	@type Int
 	*/
-	this.width	= w == null ? 0 : w;
+	this.width	= NULL(w) ? 0 : w;
 	/**
 	The height of the $Rectangle
 	@property height
 	@type Int
 	*/
-	this.height	= h == null ? 0 : h;
+	this.height	= NULL(h) ? 0 : h;
 	/**
 	The color of the $Rectangle to be used for debug drawing
 	@property color
 	@type $Color
 	*/
-	this.color = color == null ? new $Color() : color;
+	this.color = NULL(color) ? new $Color() : color;
 	
 	/**
 	Checks to see if a point in 2D space (x and y) are within this $Rectangle's bounds

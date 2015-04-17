@@ -658,9 +658,11 @@
                     "type": "Function"
                 },
                 {
-                    "name": "$includeNulls",
+                    "name": "includeNulls",
                     "description": "Include null objects in the returned collection",
-                    "type": "Bool"
+                    "type": "Bool",
+                    "optional": true,
+                    "optdefault": "false"
                 }
             ],
             "return": {
@@ -2293,7 +2295,7 @@
             "line": 50,
             "description": "Fires at the beginning this objects <a href=\"$Canvas.html#method_Draw\">Draw</a> function before the <a href=\"$Canvas.html#event_Draw\">drawing</a> event fires",
             "itemtype": "event",
-            "name": "drawing",
+            "name": "updating",
             "params": [
                 {
                     "name": "Canvas",

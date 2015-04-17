@@ -247,7 +247,7 @@ Extension methods to the base array class
 	Iterate through the collection and pass each element in the collection through the supplied expression, whatever is returned from the expression is added to a collection that is then returned
 	@method iterateExecute
 	@param {function} expression The Anonymous function that each element in the collection will be passed through
-	@param {bool} $includeNulls Include null objects in the returned collection
+	@param {bool} [includeNulls=false] Include null objects in the returned collection
 	@return {Array} The elements that passed the evaluation of the expression
 	@example var names = myArray.IterateExecute(function(elm) { return elm.name; });
 	@chainable
