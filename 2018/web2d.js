@@ -1,118 +1,4 @@
 var web2d = {
-    // [SECTION] Global definitions
-    Promise: function(execute, scope, scopeMethod) {
-		if (!scope) {
-			throw new Error("The scope is required for the promise");
-		}
-
-		this.pendingCallback = null;
-		this.settledCallback = null;
-		this.fulfilledCallback = null;
-		this.rejectedCallback = null;
-		this.promise = null;
-		this.scope = scope;
-		this.scopeMethod = scopeMethod;
-		this.thenArgs = [];
-		this.callThen = false;
-		this.completed = false;
-		var that = this;
-
-		this.pending = function(arg) {
-			if (arg == null || typeof arg != "function") {
-				if (that.pendingCallback != null) {
-					if (arg != null) {
-						that.pendingCallback(arg);
-					} else {
-						that.pendingCallback();
-					}
-				}
-			} else {
-				that.pendingCallback = arg;
-			}
-		};
-
-		this.complete = function(arg) {
-			if (arg == null || typeof arg != "function") {
-				if (that.settledCallback != null) {
-					if (arg != null) {
-						that.settledCallback(arg);
-					} else {
-						that.settledCallback();
-					}
-				}
-
-				if (this.callThen) {
-					this.scopeMethod.apply(this.scope, this.thenArgs);
-					this.promise.complete();
-				}
-
-				this.completed = true;
-			} else {
-				that.settledCallback = arg;
-			}
-		};
-
-		this.success = function(arg) {
-			if (arg == null || typeof arg != "function") {
-				var args = [arg];
-				if (arguments.length > 1) {
-					args = [].slice.call(arguments);
-				}
-
-				if (that.fulfilledCallback != null) {
-					if (arg != null) {
-						that.fulfilledCallback.apply(this.scope, args);
-					} else {
-						that.fulfilledCallback();
-					}
-				}
-
-				this.complete();
-			} else {
-				that.fulfilledCallback = arg;
-			}
-		};
-
-		this.failure = function(arg) {
-			if (arg == null || typeof arg != "function") {
-				if (that.rejectedCallback != null) {
-					if (arg != null) {
-						that.rejectedCallback(arg);
-					} else {
-						that.rejectedCallback();
-					}
-				}
-
-				this.complete();
-			} else {
-				that.rejectedCallback = arg;
-			}
-		};
-
-		this.then = function() {
-			if (arguments.length > 0) {
-				this.thenArgs = [].slice.call(arguments);
-			}
-
-			var that = this;
-			this.promise = new this.Promise(function(promise) {
-				if (that.completed) {
-					if (that.scope) {
-						that.scopeMethod.apply(that.scope, that.thenArgs);
-						promise.complete();
-					}
-
-					return;
-				}
-
-				that.callThen = true;
-			}, this.scope, this.scopeMethod);
-
-			return this.promise;
-		};
-
-		execute(this);
-	},
 	http: {
 		xhr: function() {
 			if (typeof XMLHttpRequest !== 'undefined') {
@@ -140,7 +26,7 @@ var web2d = {
 		},
 		send: function(url, method, data) {
 			var that = this;
-			return new this.Promise(function(promise) {
+			return new Promise(function(resolve, reject) {
 				var x = that.xhr();
 				x.open(method, url);
 				x.onreadystatechange = function() {
@@ -152,7 +38,7 @@ var web2d = {
 							// Skip and just use raw text
 						}
 
-						promise.success(data);
+						resolve(data);
 					}
 				};
 
@@ -1941,6 +1827,82 @@ var web2d = {
         this.stopTypeWriter = function() {
             this.stopTypeWriter = true;
         }
+    },
+    net: {
+        client: function() {
+            this.socket = null;
+            this.message = new web2d.Event();
+            this.error = new web2d.Event();
+
+            this.connect = function(host, port) {
+                var that = this;
+                return new Promise(function(resolve, reject) {
+                    try {
+                        that.socket = new WebSocket("ws://" + host + ":" + port + "/");
+                    } catch (e) {
+                        alert("Your browser currently doesn't support web sockets, please upgrade your browser to chat!");
+                        return;
+                    }
+
+                    that.socket.onopen = function(event) {
+                        resolve(event);
+                    };
+
+                    that.socket.onerror = function(event) {
+                        that.error.fire([event]);
+                    };
+
+                    that.socket.onmessage = function(event) {
+                        that.message.fire([event]);
+                    };
+                });
+            };
+
+            this.send = function(message) {
+                if (!message.length) {
+                    return;
+                }
+
+                try {
+                    this.socket.send(JSON.stringify(json));
+                } catch (e) {
+                    this.close();
+                }
+            };
+
+            this.close = function() {
+                this.socket.close();
+            };
+        }
+    },
+    notification: function(title, message) {
+        return new Promise(function (resolve, reject) {
+            // Let's check if the browser supports notifications
+            if (!("Notification" in window)) {
+                reject("Not supported by browser");
+                return;
+            }
+
+            var notification = null;
+            if (Notification.permission === "granted") {
+                notification = new Notification(message);
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {
+                    // If the user accepts, let's create a notification
+                    if (permission === "granted") {
+                        notification = new Notification(message);
+                    }
+                });
+            } else {
+                reject("Access denied");
+            }
+
+            if (notification) {
+                notification.onclick = function(event) {
+                    resolve(event);
+                };
+            }
+        });
     }
 };
 
