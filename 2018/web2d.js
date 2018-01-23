@@ -121,7 +121,7 @@ var web2d = {
         @param {Object} [obj=window] The object that the function belongs to
         */
         this.register = function(evt, obj) {
-            this.events.push(new Array(evt, obj == null ? window : obj));
+            this.events.push([evt, !obj ? window : obj]);
         };
         
         /**
@@ -192,8 +192,8 @@ var web2d = {
     A basic 2 dimensional vector
     @class web2d.vec2
     @constructor
-    @param {Float} [x=0] The x dimension of the vector
-    @param {Float} [y=0] The y dimension of the vector
+    @param {Number} [x=0] The x dimension of the vector
+    @param {Number} [y=0] The y dimension of the vector
     */
     vec2: function(x, y) {
         /**
@@ -312,10 +312,10 @@ var web2d = {
     A simple rectangle that can be used for placement, collision detection or even for debugging	
     @class web2d.rectangle
     @constructor
-    @param {Int} x The x position for the rectangle
-    @param {Int} y The y position for the rectangle
-    @param {Int} w The width for the rectangle
-    @param {Int} h The height for the rectangle
+    @param {Number} x The x position for the rectangle
+    @param {Number} y The y position for the rectangle
+    @param {Number} w The width for the rectangle
+    @param {Number} h The height for the rectangle
     @param {$Color} color The color for the debug draw of the rectangle
     */
     rectangle: function(x, y, w, h, color) {
@@ -357,8 +357,8 @@ var web2d = {
         /**
         Checks to see if a point in 2D space (x and y) are within this $Rectangle's bounds
         @method Contains
-        @param {Int} x The x position to check if within this $Rectangle
-        @param {Int} y The y position to check if within this $Rectangle
+        @param {Number} x The x position to check if within this $Rectangle
+        @param {Number} y The y position to check if within this $Rectangle
         @return Literal True if the x and y vector is within this rectangle
         */
         this.contains = function(x, y) {
@@ -406,10 +406,10 @@ var web2d = {
     A basic class to handle color (rgba) and its conversions for Canvas
     @class web2d.color
     @constructor
-    @param {Int} [r=255] A red value between 0 and 255 (inclusive)
-    @param {Int} [g=255] A green value between 0 and 255 (inclusive)
-    @param {Int} [b=255] A blue value between 0 and 255 (inclusive)
-    @param {Float} [a=1.0] An alpha between 0.0 and 1.0 (inclusive)
+    @param {Number} [r=255] A red value between 0 and 255 (inclusive)
+    @param {Number} [g=255] A green value between 0 and 255 (inclusive)
+    @param {Number} [b=255] A blue value between 0 and 255 (inclusive)
+    @param {Number} [a=1.0] An alpha between 0.0 and 1.0 (inclusive)
     */
     color: function(r, g, b, a) {
         /**
@@ -544,14 +544,14 @@ var web2d = {
         /**
         Fired when a key has been pressed
         @event keyDown
-        @param {Int} keycode The code of the key that was pressed
+        @param {Number} keycode The code of the key that was pressed
         */
         keyDown: null,
 
         /**
         Fired when a key has been released
         @event keyUp
-        @param {Int} keycode The code of the key that was pressed
+        @param {Number} keycode The code of the key that was pressed
         */
         keyUp: null,
 
@@ -570,8 +570,8 @@ var web2d = {
         /**
         Fired when the mouse has changed position
         @event mouseMove
-        @param {Int} x The x position of the mouse after the update
-        @param {Int} y The y position of the mouse after the update
+        @param {Number} x The x position of the mouse after the update
+        @param {Number} y The y position of the mouse after the update
         */
         mouseMove: null,
 
@@ -838,8 +838,8 @@ var web2d = {
     @class web2d.canvas
     @constructor
     @param elm {Object} The Canvas element on the page to reference
-    @param [widthPercent=null] {Float} The width scale factor of the Canvas (if null uses default width set in the Canvas tag)
-    @param [heightPercent=null] {Float} The height scale factor of the Canvas (if null uses default height set in the Canvas tag)
+    @param [widthPercent=null] {Number} The width scale factor of the Canvas (if null uses default width set in the Canvas tag)
+    @param [heightPercent=null] {Number} The height scale factor of the Canvas (if null uses default height set in the Canvas tag)
     */
     canvas: function(elm, widthPercent, heightPercent) {
         if (!elm) {
@@ -919,8 +919,8 @@ var web2d = {
         /**
         This will scale the canvas up without resizing the canvas. It only scales up everything that is being drawn (1, 1) is default (2, 2) would be 2x the size of default
         @method scale
-        @param {Int} x The scale for the x-axis
-        @param {Int} y The scale for the y-axis
+        @param {Number} x The scale for the x-axis
+        @param {Number} y The scale for the y-axis
         */
         this.scale = function(x, y) {
             this.context.scale(x, y);
@@ -1172,21 +1172,22 @@ var web2d = {
     image: function(src, rect) {
         /**
         The actual native JavaScript Image object
-        @property image
+        @property {Image} image
         */
         this.image = new Image();
 
         /**
         The rectangle for the image to be drawn in
-        @property rect
+        @property {web2d.rectangle} rect
         */
         this.rect = rect;
         
         if (src != null) {
-            if (typeof imgSrc == "string")
+            if (typeof src === "string") {
                 this.image.src = src;
-            else
+            } else {
                 this.image = src;
+            }
             
             if (this.rect == null) {
                 this.rect.width = this.image.width;
@@ -1200,7 +1201,7 @@ var web2d = {
         @param {Image|String} src The native image object or string source of the image
         */
         this.load = function(src) {
-            if (typeof imgSrc == "string") {
+            if (typeof src === "string") {
                 this.image.src = src;
             } else {
                 this.image = src;
@@ -1210,8 +1211,8 @@ var web2d = {
         /**
         Set the position for this object's rectangle
         @methodpPosition
-        @param {Int} x The new x position for this object's rectangle
-        @param {Int} y The new y position for this object's rectangle
+        @param {Number} x The new x position for this object's rectangle
+        @param {Number} y The new y position for this object's rectangle
         */
         this.position = function(x, y) {
             if (x != null) this.rect.x = x;
@@ -1221,8 +1222,8 @@ var web2d = {
         /**
         Resize how large this image is drawn onto the canvas
         @method resize
-        @param {Int} width The new width for this image to be drawn as
-        @param {Int} height The new height for this image to be drawn as
+        @param {Number} width The new width for this image to be drawn as
+        @param {Number} height The new height for this image to be drawn as
         */
         this.resize = function(width, height) {
             this.rect.width = width;
@@ -1233,8 +1234,8 @@ var web2d = {
         Used to draw this image in a particular location on the canvas
         @method draw
         @param {web2d.canvas} canvas The canvas object to draw this image on
-        @param {Int} x The x position for this image to be drawn at
-        @param {Int} y The y position for this image to be drawn at
+        @param {Number} x The x position for this image to be drawn at
+        @param {Number} y The y position for this image to be drawn at
         */
         this.draw = function(canvas, x, y) {
             canvas.context.drawImage(this.image, x, y, this.rect.width, this.rect.height);
@@ -1255,124 +1256,54 @@ var web2d = {
     A helper class that allows to easily animate regular (same sized) sprite sheets
     @class spriteSheet
     @constructor
-    @param {Int} width The width of each sprite in the sprite sheet
-    @param {Int} height The height of each sprite in the sprite sheet
-    @param {Int} row The column to start on for ths animation
-    @param {Int} column The column to start on for this animation
-    @param {Int} [limit=Infinite] The limited set of sprites to cycle through
-    @param {String|Image} imgSrc The image to be used for the spirte animation
-    @param {Int} fps The frames per second for this animation
-    @param {Int} columns How many total columns this animtation has
-    @param {Int} rows How many total rows this animation has
+    @param {Object} data The json object with the frame data
     */
-    spriteSheet: function(width, height, row, column, limit, imgSrc, fps, columns, rows) {
+    spriteSheet: function(data) {
+        /**
+        The current sequence being played for this animation
+        @property _sequence
+        @type Object
+        @private
+        */
+        this._sequence = null;
+
+        /**
+        The current frame in the sequence being shown
+        @property _sequenceIndex
+        @type Number
+        @private
+        */
+        this._sequenceIndex = 0;
+
+        /**
+        The data for this spritesheet
+        @property data
+        @type Object
+        */
+        this.data = data;
+
         /**
         The frames per second for this animation
         @property fps
-        @type Int
+        @type Number
         */
-        this.fps = (fps == null || fps >= 33) ? 1 : 33 / fps;
+        this.fps = data.animation.fps >= 33 ? 1 : 33 / data.animation.fps;
 
         /**
         Used to count the elapsed time for frames
         @property fpsCounter
-        @type Int
+        @type Number
         @private
         */
-        this.fpsCounter = 0;
-
-        /**
-        The width of each sprite in the sprite sheet
-        @property width
-        @type Int
-        */
-        this.width = width;
-
-        /**
-        The height of each sprite in the sprite sheet
-        @property height
-        @type Int
-        */
-        this.height = height;
-
-        /**
-        The starting row on the spritesheet for the animation
-        @property rowStart
-        @type Int
-        @private
-        */
-        this.rowStart = row;
-
-        /**
-        The starting column on the spritesheet for the animation
-        @property columnStart
-        @type Int
-        @private
-        */
-        this.columnStart = column;
-
-        /**
-        The current row that the animation is on
-        @property row
-        @type Int
-        @private
-        */
-        this.row = row;
-
-        /**
-        The current column that the animation is on
-        @property column
-        @type Int
-        @private
-        */
-        this.column = column;
-
-        /**
-        The total count of rows for the animation
-        @property rows
-        @type Int
-        @private
-        */
-        this.rows = rows;
-
-        /**
-        The total amount of columns for the animation
-        @property columns
-        @type Int
-        @private
-        */
-        this.columns = columns;
-
-        /**
-        The amount of frames for this particular segment of the animation
-        @property limit
-        @type Int
-        @private
-        */
-        this.limit = (limit == null || limit == 0) ? 999999999999 : limit - 1;
-
-        /**
-        The current counter to check against the limit
-        @property limitCount
-        @type Int
-        @private
-        */
-        this.limitCount = 0;
-
-        /**
-        The position on the Canvas that this animation is at
-        @property position
-        @type web2d.vec2
-        */
-        this.position = new web2d.vec2(0);
+        this._fpsCounter = 0;
 
         /**
         The current cropping position for the image
-        @property cropPosition
-        @type web2d.vec2
+        @property _cropRect
+        @type web2d.rectangle
         @private
         */
-        this.cropPosition = new web2d.vec2(0);
+        this._cropRect = new web2d.rectangle(0, 0, 0, 0);
 
         /**
         The image to be used for the animation
@@ -1381,94 +1312,50 @@ var web2d = {
         @private
         */
         this.image = new Image();
+        this.image.src = data.image;
 
-        if (typeof imgSrc == "string") {
-            this.image.src = imgSrc;
-        } else {
-            this.image = imgSrc;
-        }
-        
         /**
-        Sets the frame limit for the spritesheet animation
-        @method setLimit
-        @param {Int} limit How many frames the spritesheet animation should be limited to
+        Sets which sequence should currently be playing
+        @method setSequence
+        @param {Object} sequence The sequence to be played
         */
-        this.setLimit = function(limit) {
-            this.limit = limit - 1;
+        this.setSequence = function(sequence) {
+            this._sequence = sequence;
+            this._sequenceIndex = 0;
+            this._cropRect.width = this._sequence[this._sequenceIndex].w;
+            this._cropRect.height = this._sequence[this._sequenceIndex].h;
+            this._sequenceIndex = -1;
+
+            this._updateCrop();
         };
-        
+
         /**
-        Set the current and start row for the spritesheet animation
-        @method setRow
-        @param {Int} num The row number to be assigned to
+        Updates the cropping for the current frame in the current sequence
+        @method _updateCrop
+        @private
         */
-        this.setRow = function(num) {
-            this.row = num;
-            this.rowStart = num;
-            
-            this.cropPosition.x = this.width * this.column;
-            this.cropPosition.y = this.height * this.row;
-        };
-        
-        /**
-        Set the current and start column for the spritesheet animation
-        @method setColumn
-        @param {Int} num The column number to be assigned to
-        */
-        this.setColumn = function(num) {
-            this.column = num;
-            this.columnStart = num;
-            
-            this.cropPosition.x = this.width * this.column;
-            this.cropPosition.y = this.height * this.row;
+        this._updateCrop = function() {
+            if (++this._sequenceIndex >= this._sequence.length) {
+                this._sequenceIndex = 0;
+            }
+
+            this._cropRect.x = this._sequence[this._sequenceIndex].x;
+            this._cropRect.y = this._sequence[this._sequenceIndex].y;
         };
         
         /**
         This will draw the individual sprite on the Canvas
-        Note: This function is designed to work with the <a href="$Canvas.html#event_drawing">drawing</a> $Event object of the main Canvas object
+        Note: This function is designed to work with the <a href="$Canvas.html#event_drawing">drawing</a> web2d.event object of the main Canvas object
         @method draw
+        @param {web2d.rectangle} drawRect The rectangle to draw the animation within
         @param {web2d.canvas} canvas The Canvas element to be drawn on
         */
-        this.draw = function(canvas) {
-            this.cropPosition.x = this.width * this.column;
-            this.cropPosition.y = this.height * this.row;
-            
-            if (this.columns == null || this.columns == 0) {
-                this.columns = this.image.width / this.width;
-            }
-            
-            if (this.rows == null || this.rows == 0) {
-                this.rows = this.image.height / this.height;
-            }
-            
-            if (this.fpsCounter == 0) {
-                if (this.limitCount < this.limit) {
-                    this.limitCount++;
-                    this.column++;
-                    
-                    if (this.column >= this.columns) {
-                        this.row++;
-                        this.column = 0;
-                        
-                        if (this.row >= this.rows) {
-                            this.row = this.rowStart;
-                            this.column = this.columnStart;
-                            this.limitCount = 0;
-                        }
-                    }
-                } else {
-                    this.column = this.columnStart
-                    this.row = this.rowStart;
-                    this.limitCount = 0;
-                }
-            }
-            
-            canvas.context.drawImage(this.image, this.cropPosition.x, this.cropPosition.y, this.width, this.height, this.position.x, this.position.y, this.width, this.height);
-            
-            this.fpsCounter++;
-            
-            if (this.fpsCounter >= this.fps) {
-                this.fpsCounter = 0;
+        this.draw = function(drawRect, canvas) {
+            canvas.context.drawImage(this.image, this._cropRect.x, this._cropRect.y, this._cropRect.width, this._cropRect.height, drawRect.x, drawRect.y, drawRect.width, drawRect.height);
+
+            if (this._fpsCounter++ >= this.fps) {
+                this._fpsCounter = 0;
+                this._updateCrop();
             }
         };
     },
@@ -1521,7 +1408,7 @@ var web2d = {
         /**
         This sets the current time of the audio clip to allow "jumping"
         @method setTime
-        @param {Int} The time that the audio clip should start at
+        @param {Number} The time that the audio clip should start at
         */
         this.setTime = function(time) {
             this.clip.currentTime = time;
@@ -1561,7 +1448,7 @@ var web2d = {
         /**
         Sets how many times the audio clip should loop when playing. If 0 is passed then it will loop forever, if -1 is passed then it will turn looping off, otherwise loops the specified amount
         @method setLoopCount
-        @param {Int} The amount of times this audio clip should loop
+        @param {Number} The amount of times this audio clip should loop
         */
         this.setLoopCount = function(repeats) {
             if (repeats == 0) {
@@ -1795,8 +1682,8 @@ var web2d = {
         A cool effect to make it seem like the text is being typed out
         @method typeWriter
         @param {String} text The text that is to be written out
-        @param {Int} speed The time in milliseconds between each letter appearing
-        @param {Int} current The current index (char) of the string (just keep at 0)
+        @param {Number} speed The time in milliseconds between each letter appearing
+        @param {Number} current The current index (char) of the string (just keep at 0)
         */
         this.typeWriter = function(text, speed, callback, current) {
             if (this.stopTypeWriter) {
@@ -1840,7 +1727,7 @@ var web2d = {
                     try {
                         that.socket = new WebSocket("ws://" + host + ":" + port + "/");
                     } catch (e) {
-                        alert("Your browser currently doesn't support web sockets, please upgrade your browser to chat!");
+                        reject("Your browser currently doesn't support web sockets, please upgrade your browser to chat!");
                         return;
                     }
 
